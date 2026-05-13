@@ -1,0 +1,532 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LicenseCardFill64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\LicenseCardFill64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logoutThick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\logoutThick.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\addFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cardNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\cardNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="applications" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\applications.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\addNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="writtenTestNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\writtenTestNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="walletNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\walletNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DashboardNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DashboardNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="takeTestFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\takeTestFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="appointmentNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\appointmentNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BackShortArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\BackShortArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="localLicensesNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\localLicensesNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newScheduleAppointmentNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\newScheduleAppointmentNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="removeFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\removeFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="drivingIllu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\drivingIllu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="releaseNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\releaseNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="defaultFemaleProfile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\defaultFemaleProfile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="visionTestNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\visionTestNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="overviewNoFillThin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\overviewNoFillThin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="removeNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\removeNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illuWelcome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illuWelcome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="overviewFillThin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\overviewFillThin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="retakeTestNoFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\retakeTestNoFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\editFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newScheduleAppointmentFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\newScheduleAppointmentFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="showPasswordEye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\showPasswordEye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ManageTestTypesFillBlack512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\ManageTestTypesFillBlack512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logoSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\logoSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="writtenTestFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\writtenTestFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Saudi_Riyal_Symbol1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\Saudi_Riyal_Symbol.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settingsFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\settingsFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logoutThin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\logoutThin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UpdateNoFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\UpdateNoFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ManageApplicationsNoFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\ManageApplicationsNoFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="moneyThisMonthNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\moneyThisMonthNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LicenseCardNoFill512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\LicenseCardNoFill512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settingSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\settingSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="releaseFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\releaseFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DashboardUserFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DashboardUserFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settingsBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\settingsBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="quickActionsNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\quickActionsNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\editNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="releaseNoFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\releaseNoFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="detainNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\detainNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancellApplicationNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\cancellApplicationNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ManageApplicationsTypesFillBlack512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\ManageApplicationsTypesFillBlack512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="monyAllTime1NoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\monyAllTime1NoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SearchBlackFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\SearchBlackFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Saudi_Riyal_Symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\Saudi_Riyal_Symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="searchPersonFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\searchPersonFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DriversNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DriversNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="applicationNoFillThin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\applicationNoFillThin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="usersFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\usersFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LicenseCardFill512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\LicenseCardFill512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="appointmentFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\appointmentFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="internationalLicensesFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\internationalLicensesFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DriverFillThin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DriverFillThin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editDateNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\editDateNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="detainFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\detainFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ManageApplicationsTypesNoFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\ManageApplicationsTypesNoFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="defaultMaleProfile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\defaultMaleProfile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="detainNoFill1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\detainNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QuickSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\QuickSearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settingNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\settingNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="streetTestFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\streetTestFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hidePasswordEye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\hidePasswordEye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="driversNoFillThin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\driversNoFillThin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="saudiMapLogoBlack512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\saudiMapLogoBlack512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="personCardNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\personCardNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="searchApplicationNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\searchApplicationNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="checkMarkFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\checkMarkFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scheduleFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\scheduleFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="passwordNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\passwordNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="retakeTestFillBlack512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\retakeTestFillBlack512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="personCardFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\personCardFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editDateFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\editDateFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cardFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\cardFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="replaceNoFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\replaceNoFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddFillBlack512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\AddFillBlack512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="usersNoFillBold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\usersNoFillBold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LicenseCardNoFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\LicenseCardNoFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DashboardFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DashboardFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ManageTestTypesNoFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\ManageTestTypesNoFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UpdateFillBlack512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\UpdateFillBlack512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="usersNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\usersNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nextShortArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\nextShortArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DriversFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DriversFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peopleFillThin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\peopleFillThin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="applicationsNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\applicationsNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="removeNoFill1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\removeNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DashboardUserFill64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DashboardUserFill64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LicenseHistoryFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\LicenseHistoryFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SearchGrayFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\SearchGrayFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peopleNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\peopleNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peopleNoFillThin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\peopleNoFillThin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DetainLicenseFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DetainLicenseFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DetainLicenseNoFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DetainLicenseNoFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddNoFillGrey512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\AddNoFillGrey512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="internationalLicensesNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\internationalLicensesNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ManageApplicationsFillBlack512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\ManageApplicationsFillBlack512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\eye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scheduleNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\scheduleNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="localLicensesFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\localLicensesFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peopleFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\peopleFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="searchApplicationFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\searchApplicationFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="releaseFillBlack512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\releaseFillBlack512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="completedApplicationNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\completedApplicationNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="checkMarkNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\checkMarkNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ProfileTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProfileTest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="detainNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\detainNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DashboardUserFill32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DashboardUserFill32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="streetTestNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\streetTestNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="applicationsWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\applicationsWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="searchPersonNoFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\searchPersonNoFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="replaceFillBlack512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\replaceFillBlack512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DetainLicenseFillBlack512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\DetainLicenseFillBlack512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UsersFillThin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\UsersFillThin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="illu10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\illu10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="visionTestFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\visionTestFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LicenseHistoryNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\LicenseHistoryNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LicenseCardNoFill64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\LicenseCardNoFill64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="takeTestNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\takeTestNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="detainFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\detainFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dateClockNoFill24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\dateClockNoFill24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>
