@@ -59,7 +59,6 @@ The system follows a **3-Tier Architecture** with a SQL Server relational databa
 - GUID-based login tokens encrypted with DPAPI and stored in the Windows Registry
 - Bitwise permission system
 - SQL parameterization and input validation
-- Audit logging for important actions
 
 ---
 
