@@ -50,6 +50,7 @@
     <Compile Include="clsCountriesDataAccess.cs" />
     <Compile Include="clsDashboardDataAccess.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
+    <Compile Include="clsDataTransaction.cs" />
     <Compile Include="clsDetainedLicensesDataAccess.cs" />
     <Compile Include="clsDriversDataAccess.cs" />
     <Compile Include="clsInternationalLicensesDataAccess.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="clsTestTypesDataAccess.cs" />
     <Compile Include="clsUserDataAccess.cs" />
     <Compile Include="clsUserTokensDataAccess.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 
 namespace DataAccessLayer
@@ -16,12 +17,12 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select CountryName from Countries;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllCountries", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
-
+                        
                         if (reader.HasRows)
                             dt.Load(reader);
                         else
@@ -29,9 +30,10 @@ namespace DataAccessLayer
                     }
                 }
 
-            } catch (Exception e)
+            } catch (Exception ex)
             {
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }
@@ -44,24 +46,31 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select CountryName from Countries where CountryID = @CountryID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetCountryByID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@CountryID", CountryID);
-                        connection.Open();
-                        object result= command.ExecuteScalar();
                         
-                        if (result != null)
+                        SqlParameter countryNameParameter = new SqlParameter("@CountryName", SqlDbType.VarChar, 100)
                         {
-                            CountryName = result.ToString();
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(countryNameParameter);
+                        
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        if (countryNameParameter.Value is string name)
+                        {
+                            CountryName = name;
                             isFound = true;
                         }
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -74,24 +83,31 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select CountryID from Countries where CountryName = @CountryName;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetCountryByName", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@CountryName", CountryName);
-                        connection.Open();
-                        object result= command.ExecuteScalar();
                         
-                        if (result != null && int.TryParse(result.ToString() , out int ID))
+                        SqlParameter countryIDParameter = new SqlParameter("@CountryID", SqlDbType.VarChar, 100)
                         {
-                            CountryID = ID;
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(countryIDParameter);
+                        
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        if (countryIDParameter.Value is int id)
+                        {
+                            CountryID = id;
                             isFound = true;
                         }
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }

@@ -357,7 +357,7 @@
             // ctrlDrivers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.guna2Panel1);
             this.Name = "ctrlDrivers";
             this.Size = new System.Drawing.Size(1441, 894);

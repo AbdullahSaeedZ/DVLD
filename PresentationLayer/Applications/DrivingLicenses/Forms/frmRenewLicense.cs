@@ -8,7 +8,7 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
 {
     public partial class frmRenewLicense : Form
     {
-        private clsLicensesBusiness _RenewedLicense;
+        private int _RenewedLicenseID = -1;
 
         public frmRenewLicense()
         {
@@ -89,7 +89,7 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
 
             try
             {
-                _RenewedLicense = ctrlLocalDrivingLicenseInfoWithFilter1.SelectedLicenseInfo.RenewLicense(tbNotes.Text, clsGlobal.CurrentUser);
+                _RenewedLicenseID = ctrlLocalDrivingLicenseInfoWithFilter1.SelectedLicenseInfo.RenewLicense(tbNotes.Text, clsGlobal.CurrentUser);
             }
             catch (Exception ex)
             {
@@ -97,14 +97,15 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
                 this.Close();
             }
 
-            if (_RenewedLicense != null)
+            if (_RenewedLicenseID != -1)
             {
-                lblRenewedLicenseID.Text = _RenewedLicense.LicenseID.ToString();
+                lblRenewedLicenseID.Text = _RenewedLicenseID.ToString();
+                lblRenewApplicationID.Text = clsLicensesBusiness.FindByLicenseID(_RenewedLicenseID).ApplicationID.ToString();
                 tbNotes.Enabled = false;
                 btnShowNewLicenseInfo.Enabled = true;
                 btnRenewLicense.Enabled = false;
                 ctrlLocalDrivingLicenseInfoWithFilter1.FilterEnabled = false;
-                MessageBox.Show($"License is renewed successfully with new ID {_RenewedLicense.LicenseID}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"License is renewed successfully with new ID {_RenewedLicenseID}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
                 MessageBox.Show($"Failed to renew the license", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -113,7 +114,7 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
 
         private void btnShowRenewedLicenseInfo_Click(object sender, EventArgs e)
         {
-            frmShowLocalLicenseInfo licensesInfo = new frmShowLocalLicenseInfo(_RenewedLicense.LicenseID);
+            frmShowLocalLicenseInfo licensesInfo = new frmShowLocalLicenseInfo(_RenewedLicenseID);
             clsUtilities.AddToBreadcrumb("> License Info");
             licensesInfo.ShowDialog();
             clsUtilities.RemoveFromBreadcrumb("> License Info");

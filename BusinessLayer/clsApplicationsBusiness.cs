@@ -110,7 +110,7 @@ namespace BusinessLayer
             _mode = enMode.eUpdateMode;
         }
 
-        // this the base application, cuz will have derived applications of this 
+        // this is the base application, cuz will have derived applications of this 
         public static clsApplicationsBusiness FindBaseApplicationByID(int ApplicationID)
         {
             int applicantPersonID = -1, applicationTypeID = -1, createdByUserID = -1;
@@ -124,41 +124,38 @@ namespace BusinessLayer
                 return null;
         }
 
-        private bool _AddNewApplication()
+
+        private bool _AddNewApplication(clsDataTransaction transaction)
         {
             // date of creating application is taken from Business layer (server) not the UI
             this.ApplicationDate = DateTime.Now;
             this.LastStatusDate = DateTime.Now;
-            this.ApplicationID = clsApplicationsDataAccess.AddNewApplication(this.ApplicantPersonID, this.ApplicationDate, (int)this.ApplicationTypeID, (byte)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID);
+            this.ApplicationID = clsApplicationsDataAccess.AddNewApplication(this.ApplicantPersonID, this.ApplicationDate, (int)this.ApplicationTypeID,
+                (byte)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID, transaction);
             return (this.ApplicationID != -1);
         }
 
-        private bool _UpdateApplication()
+        private bool _UpdateApplication(clsDataTransaction transaction)
         {
             this.LastStatusDate = DateTime.Now;
             return clsApplicationsDataAccess.UpdateApplication(this.ApplicationID ,this.ApplicantPersonID, this.ApplicationDate, (int)this.ApplicationTypeID,
-                                                                (byte)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID);
+                                                                (byte)this.ApplicationStatus, this.LastStatusDate, this.PaidFees, this.CreatedByUserID, transaction);
         }
 
+        // base applications are not deletable alone, deletion will be in derived applications, which will handle deletion of both using transactions in DB
+        // this method kept if needed in later development
         public virtual bool DeleteApplication()
         {
-            // if there is linked record it will fail
             return clsApplicationsDataAccess.DeleteBaseApplication(this.ApplicationID);
         }
 
-     
-
-        public static DataTable GetAllApplications()
-        {
-            return clsApplicationsDataAccess.GetAllApplications();
-        }
-
-        public virtual bool Save()
+      
+        public virtual bool Save(clsDataTransaction transaction)
         {
             switch (_mode)
             {
                 case enMode.eAddMode:
-                    if (_AddNewApplication())
+                    if (_AddNewApplication(transaction))
                     {
                         _mode = enMode.eUpdateMode;
                         return true;
@@ -167,13 +164,11 @@ namespace BusinessLayer
                         return false;
 
                 case enMode.eUpdateMode:
-                    return _UpdateApplication();
+                    return _UpdateApplication(transaction);
 
                 default: return false;
             }
         }
-
-
 
         public bool Cancel()
         {
@@ -182,12 +177,6 @@ namespace BusinessLayer
             else
                 return false;
         }
-
-        public static int GetActiveApplicationID(int ApplicantPersonID, enApplicationTypes ApplicationType)
-        {
-            return clsApplicationsDataAccess.GetActiveApplicationID(ApplicantPersonID, (byte)ApplicationType);
-        }
-
 
     }
 }

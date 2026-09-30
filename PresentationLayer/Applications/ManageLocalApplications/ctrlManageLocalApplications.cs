@@ -222,7 +222,8 @@ namespace PresentationLayer.Applications.ManageLocalApplications
                             RefreshDataGridView();
                         }
                         else
-                            MessageBox.Show("Could not delete the application, it has linked data to it, can only delete new applications with no records linked.", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Could not delete the application, Check the error log for more details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                 
+                        
                     }
                     catch (Exception ex)
                     {

@@ -124,10 +124,10 @@
             this.pnlLoginInfo.Controls.Add(this.lblUserID);
             this.pnlLoginInfo.Controls.Add(this.label18);
             this.pnlLoginInfo.Controls.Add(this.label19);
-            this.pnlLoginInfo.Location = new System.Drawing.Point(323, 343);
+            this.pnlLoginInfo.Location = new System.Drawing.Point(403, 340);
             this.pnlLoginInfo.Name = "pnlLoginInfo";
             this.pnlLoginInfo.ShadowDecoration.Parent = this.pnlLoginInfo;
-            this.pnlLoginInfo.Size = new System.Drawing.Size(1103, 94);
+            this.pnlLoginInfo.Size = new System.Drawing.Size(1025, 87);
             this.pnlLoginInfo.TabIndex = 30;
             // 
             // label16
@@ -135,9 +135,9 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label16.ForeColor = System.Drawing.Color.DimGray;
-            this.label16.Location = new System.Drawing.Point(722, 53);
+            this.label16.Location = new System.Drawing.Point(658, 45);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(70, 18);
+            this.label16.Size = new System.Drawing.Size(64, 17);
             this.label16.TabIndex = 0;
             this.label16.Text = "Is Active:";
             // 
@@ -146,9 +146,9 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label17.ForeColor = System.Drawing.Color.DimGray;
-            this.label17.Location = new System.Drawing.Point(423, 53);
+            this.label17.Location = new System.Drawing.Point(402, 45);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(80, 18);
+            this.label17.Size = new System.Drawing.Size(74, 17);
             this.label17.TabIndex = 0;
             this.label17.Text = "Username:";
             // 
@@ -157,9 +157,9 @@
             this.lblIsActive.AutoSize = true;
             this.lblIsActive.Font = new System.Drawing.Font("Tahoma", 10F);
             this.lblIsActive.ForeColor = System.Drawing.Color.DimGray;
-            this.lblIsActive.Location = new System.Drawing.Point(821, 53);
+            this.lblIsActive.Location = new System.Drawing.Point(743, 45);
             this.lblIsActive.Name = "lblIsActive";
-            this.lblIsActive.Size = new System.Drawing.Size(27, 18);
+            this.lblIsActive.Size = new System.Drawing.Size(25, 17);
             this.lblIsActive.TabIndex = 0;
             this.lblIsActive.Text = "NA";
             // 
@@ -168,9 +168,9 @@
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Tahoma", 10F);
             this.lblUsername.ForeColor = System.Drawing.Color.DimGray;
-            this.lblUsername.Location = new System.Drawing.Point(529, 53);
+            this.lblUsername.Location = new System.Drawing.Point(492, 45);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(27, 18);
+            this.lblUsername.Size = new System.Drawing.Size(25, 17);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "NA";
             // 
@@ -179,9 +179,9 @@
             this.lblUserID.AutoSize = true;
             this.lblUserID.Font = new System.Drawing.Font("Tahoma", 10F);
             this.lblUserID.ForeColor = System.Drawing.Color.DimGray;
-            this.lblUserID.Location = new System.Drawing.Point(274, 53);
+            this.lblUserID.Location = new System.Drawing.Point(274, 45);
             this.lblUserID.Name = "lblUserID";
-            this.lblUserID.Size = new System.Drawing.Size(27, 18);
+            this.lblUserID.Size = new System.Drawing.Size(25, 17);
             this.lblUserID.TabIndex = 0;
             this.lblUserID.Text = "NA";
             // 
@@ -190,9 +190,9 @@
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label18.ForeColor = System.Drawing.Color.DimGray;
-            this.label18.Location = new System.Drawing.Point(189, 53);
+            this.label18.Location = new System.Drawing.Point(201, 45);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(64, 18);
+            this.label18.Size = new System.Drawing.Size(58, 17);
             this.label18.TabIndex = 0;
             this.label18.Text = "User ID:";
             // 
@@ -201,9 +201,9 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Tahoma", 12.22642F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.DimGray;
-            this.label19.Location = new System.Drawing.Point(17, 13);
+            this.label19.Location = new System.Drawing.Point(15, 12);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(184, 23);
+            this.label19.Size = new System.Drawing.Size(167, 21);
             this.label19.TabIndex = 0;
             this.label19.Text = "Login Information";
             // 
@@ -223,10 +223,10 @@
             this.guna2Panel2.Controls.Add(this.tbNewPassword);
             this.guna2Panel2.Controls.Add(this.label4);
             this.guna2Panel2.FillColor = System.Drawing.Color.White;
-            this.guna2Panel2.Location = new System.Drawing.Point(323, 698);
+            this.guna2Panel2.Location = new System.Drawing.Point(403, 710);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.ShadowDecoration.Parent = this.guna2Panel2;
-            this.guna2Panel2.Size = new System.Drawing.Size(1104, 123);
+            this.guna2Panel2.Size = new System.Drawing.Size(1026, 114);
             this.guna2Panel2.TabIndex = 29;
             // 
             // tbCurrentPassword
@@ -248,15 +248,14 @@
             this.tbCurrentPassword.ForeColor = System.Drawing.Color.Black;
             this.tbCurrentPassword.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbCurrentPassword.HoverState.Parent = this.tbCurrentPassword;
-            this.tbCurrentPassword.Location = new System.Drawing.Point(176, 69);
-            this.tbCurrentPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbCurrentPassword.Location = new System.Drawing.Point(152, 64);
             this.tbCurrentPassword.Name = "tbCurrentPassword";
             this.tbCurrentPassword.PasswordChar = '\0';
             this.tbCurrentPassword.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.tbCurrentPassword.PlaceholderText = "Enter Current Password";
             this.tbCurrentPassword.SelectedText = "";
             this.tbCurrentPassword.ShadowDecoration.Parent = this.tbCurrentPassword;
-            this.tbCurrentPassword.Size = new System.Drawing.Size(225, 36);
+            this.tbCurrentPassword.Size = new System.Drawing.Size(193, 33);
             this.tbCurrentPassword.TabIndex = 18;
             this.tbCurrentPassword.Validating += new System.ComponentModel.CancelEventHandler(this.tbCurrentPassword_Validating);
             // 
@@ -276,10 +275,10 @@
             this.btnShowHidePassword2.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnShowHidePassword2.HoverState.Parent = this.btnShowHidePassword2;
             this.btnShowHidePassword2.Image = global::PresentationLayer.Properties.Resources.showPasswordEye;
-            this.btnShowHidePassword2.Location = new System.Drawing.Point(867, 74);
+            this.btnShowHidePassword2.Location = new System.Drawing.Point(742, 70);
             this.btnShowHidePassword2.Name = "btnShowHidePassword2";
             this.btnShowHidePassword2.ShadowDecoration.Parent = this.btnShowHidePassword2;
-            this.btnShowHidePassword2.Size = new System.Drawing.Size(25, 23);
+            this.btnShowHidePassword2.Size = new System.Drawing.Size(21, 21);
             this.btnShowHidePassword2.TabIndex = 22;
             this.btnShowHidePassword2.Click += new System.EventHandler(this.btnShowHidePassword_Click);
             // 
@@ -289,9 +288,9 @@
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12.22642F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DimGray;
-            this.label1.Location = new System.Drawing.Point(23, 15);
+            this.label1.Location = new System.Drawing.Point(20, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 23);
+            this.label1.Size = new System.Drawing.Size(162, 21);
             this.label1.TabIndex = 19;
             this.label1.Text = "Change Password";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -302,9 +301,9 @@
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(174, 48);
+            this.label2.Location = new System.Drawing.Point(149, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 18);
+            this.label2.Size = new System.Drawing.Size(122, 17);
             this.label2.TabIndex = 19;
             this.label2.Text = "Current Password:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -325,10 +324,10 @@
             this.btnShowHidePassword1.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnShowHidePassword1.HoverState.Parent = this.btnShowHidePassword1;
             this.btnShowHidePassword1.Image = global::PresentationLayer.Properties.Resources.showPasswordEye;
-            this.btnShowHidePassword1.Location = new System.Drawing.Point(619, 74);
+            this.btnShowHidePassword1.Location = new System.Drawing.Point(530, 70);
             this.btnShowHidePassword1.Name = "btnShowHidePassword1";
             this.btnShowHidePassword1.ShadowDecoration.Parent = this.btnShowHidePassword1;
-            this.btnShowHidePassword1.Size = new System.Drawing.Size(25, 23);
+            this.btnShowHidePassword1.Size = new System.Drawing.Size(21, 21);
             this.btnShowHidePassword1.TabIndex = 23;
             this.btnShowHidePassword1.Click += new System.EventHandler(this.btnShowHidePassword_Click);
             // 
@@ -338,9 +337,9 @@
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(424, 48);
+            this.label3.Location = new System.Drawing.Point(363, 45);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 18);
+            this.label3.Size = new System.Drawing.Size(101, 17);
             this.label3.TabIndex = 17;
             this.label3.Text = "New Password:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -364,15 +363,14 @@
             this.tbConfirmPassword.ForeColor = System.Drawing.Color.Black;
             this.tbConfirmPassword.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbConfirmPassword.HoverState.Parent = this.tbConfirmPassword;
-            this.tbConfirmPassword.Location = new System.Drawing.Point(674, 69);
-            this.tbConfirmPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbConfirmPassword.Location = new System.Drawing.Point(579, 65);
             this.tbConfirmPassword.Name = "tbConfirmPassword";
             this.tbConfirmPassword.PasswordChar = '\0';
             this.tbConfirmPassword.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.tbConfirmPassword.PlaceholderText = "Enter Password";
             this.tbConfirmPassword.SelectedText = "";
             this.tbConfirmPassword.ShadowDecoration.Parent = this.tbConfirmPassword;
-            this.tbConfirmPassword.Size = new System.Drawing.Size(225, 36);
+            this.tbConfirmPassword.Size = new System.Drawing.Size(193, 33);
             this.tbConfirmPassword.TabIndex = 21;
             this.tbConfirmPassword.UseSystemPasswordChar = true;
             this.tbConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.tbConfirmPassword_Validating);
@@ -396,15 +394,14 @@
             this.tbNewPassword.ForeColor = System.Drawing.Color.Black;
             this.tbNewPassword.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbNewPassword.HoverState.Parent = this.tbNewPassword;
-            this.tbNewPassword.Location = new System.Drawing.Point(426, 69);
-            this.tbNewPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbNewPassword.Location = new System.Drawing.Point(366, 65);
             this.tbNewPassword.Name = "tbNewPassword";
             this.tbNewPassword.PasswordChar = '\0';
             this.tbNewPassword.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.tbNewPassword.PlaceholderText = "Enter Password";
             this.tbNewPassword.SelectedText = "";
             this.tbNewPassword.ShadowDecoration.Parent = this.tbNewPassword;
-            this.tbNewPassword.Size = new System.Drawing.Size(225, 36);
+            this.tbNewPassword.Size = new System.Drawing.Size(193, 33);
             this.tbNewPassword.TabIndex = 20;
             this.tbNewPassword.UseSystemPasswordChar = true;
             this.tbNewPassword.Validating += new System.ComponentModel.CancelEventHandler(this.tbNewPassword_Validating);
@@ -415,9 +412,9 @@
             this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label4.ForeColor = System.Drawing.Color.DimGray;
-            this.label4.Location = new System.Drawing.Point(672, 48);
+            this.label4.Location = new System.Drawing.Point(576, 45);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(129, 18);
+            this.label4.Size = new System.Drawing.Size(123, 17);
             this.label4.TabIndex = 16;
             this.label4.Text = "Confirm Password:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -435,10 +432,10 @@
             this.guna2Panel3.Controls.Add(this.btnAddImage);
             this.guna2Panel3.Controls.Add(this.pbImage);
             this.guna2Panel3.FillColor = System.Drawing.Color.White;
-            this.guna2Panel3.Location = new System.Drawing.Point(14, 14);
+            this.guna2Panel3.Location = new System.Drawing.Point(12, 13);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.ShadowDecoration.Parent = this.guna2Panel3;
-            this.guna2Panel3.Size = new System.Drawing.Size(295, 807);
+            this.guna2Panel3.Size = new System.Drawing.Size(380, 813);
             this.guna2Panel3.TabIndex = 26;
             // 
             // btnRemoveImage
@@ -458,10 +455,10 @@
             this.btnRemoveImage.HoverState.Parent = this.btnRemoveImage;
             this.btnRemoveImage.Image = global::PresentationLayer.Properties.Resources.removeNoFill;
             this.btnRemoveImage.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnRemoveImage.Location = new System.Drawing.Point(47, 324);
+            this.btnRemoveImage.Location = new System.Drawing.Point(68, 386);
             this.btnRemoveImage.Name = "btnRemoveImage";
             this.btnRemoveImage.ShadowDecoration.Parent = this.btnRemoveImage;
-            this.btnRemoveImage.Size = new System.Drawing.Size(200, 37);
+            this.btnRemoveImage.Size = new System.Drawing.Size(171, 34);
             this.btnRemoveImage.TabIndex = 15;
             this.btnRemoveImage.Text = "Remove Image";
             this.btnRemoveImage.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -485,10 +482,10 @@
             this.btnAddImage.HoverState.Parent = this.btnAddImage;
             this.btnAddImage.Image = global::PresentationLayer.Properties.Resources.addNoFill;
             this.btnAddImage.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAddImage.Location = new System.Drawing.Point(47, 272);
+            this.btnAddImage.Location = new System.Drawing.Point(68, 338);
             this.btnAddImage.Name = "btnAddImage";
             this.btnAddImage.ShadowDecoration.Parent = this.btnAddImage;
-            this.btnAddImage.Size = new System.Drawing.Size(200, 37);
+            this.btnAddImage.Size = new System.Drawing.Size(171, 34);
             this.btnAddImage.TabIndex = 14;
             this.btnAddImage.Text = "Add Image";
             this.btnAddImage.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -497,11 +494,11 @@
             // pbImage
             // 
             this.pbImage.Image = global::PresentationLayer.Properties.Resources.defaultMaleProfile;
-            this.pbImage.Location = new System.Drawing.Point(47, 32);
+            this.pbImage.Location = new System.Drawing.Point(68, 51);
             this.pbImage.Name = "pbImage";
             this.pbImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.pbImage.ShadowDecoration.Parent = this.pbImage;
-            this.pbImage.Size = new System.Drawing.Size(200, 200);
+            this.pbImage.Size = new System.Drawing.Size(240, 242);
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImage.TabIndex = 0;
             this.pbImage.TabStop = false;
@@ -543,10 +540,10 @@
             this.guna2Panel4.Controls.Add(this.tbThirdName);
             this.guna2Panel4.Controls.Add(this.tbFirstName);
             this.guna2Panel4.FillColor = System.Drawing.Color.White;
-            this.guna2Panel4.Location = new System.Drawing.Point(322, 14);
+            this.guna2Panel4.Location = new System.Drawing.Point(403, 13);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.ShadowDecoration.Parent = this.guna2Panel4;
-            this.guna2Panel4.Size = new System.Drawing.Size(1104, 320);
+            this.guna2Panel4.Size = new System.Drawing.Size(1025, 321);
             this.guna2Panel4.TabIndex = 27;
             // 
             // rbFemale
@@ -557,10 +554,10 @@
             this.rbFemale.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.rbFemale.CheckedState.InnerColor = System.Drawing.Color.White;
             this.rbFemale.CheckedState.Parent = this.rbFemale;
-            this.rbFemale.Location = new System.Drawing.Point(980, 243);
+            this.rbFemale.Location = new System.Drawing.Point(916, 225);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.ShadowDecoration.Parent = this.rbFemale;
-            this.rbFemale.Size = new System.Drawing.Size(20, 20);
+            this.rbFemale.Size = new System.Drawing.Size(17, 19);
             this.rbFemale.TabIndex = 10;
             this.rbFemale.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.rbFemale.UncheckedState.BorderThickness = 2;
@@ -577,10 +574,10 @@
             this.rbMale.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.rbMale.CheckedState.InnerColor = System.Drawing.Color.White;
             this.rbMale.CheckedState.Parent = this.rbMale;
-            this.rbMale.Location = new System.Drawing.Point(836, 241);
+            this.rbMale.Location = new System.Drawing.Point(793, 223);
             this.rbMale.Name = "rbMale";
             this.rbMale.ShadowDecoration.Parent = this.rbMale;
-            this.rbMale.Size = new System.Drawing.Size(20, 20);
+            this.rbMale.Size = new System.Drawing.Size(17, 19);
             this.rbMale.TabIndex = 9;
             this.rbMale.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.rbMale.UncheckedState.BorderThickness = 2;
@@ -605,10 +602,10 @@
             this.cbCountry.HoverState.Parent = this.cbCountry;
             this.cbCountry.ItemHeight = 30;
             this.cbCountry.ItemsAppearance.Parent = this.cbCountry;
-            this.cbCountry.Location = new System.Drawing.Point(835, 167);
+            this.cbCountry.Location = new System.Drawing.Point(770, 155);
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.ShadowDecoration.Parent = this.cbCountry;
-            this.cbCountry.Size = new System.Drawing.Size(254, 36);
+            this.cbCountry.Size = new System.Drawing.Size(238, 36);
             this.cbCountry.TabIndex = 7;
             // 
             // dtpBirthDate
@@ -623,12 +620,12 @@
             this.dtpBirthDate.ForeColor = System.Drawing.Color.DimGray;
             this.dtpBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dtpBirthDate.HoverState.Parent = this.dtpBirthDate;
-            this.dtpBirthDate.Location = new System.Drawing.Point(290, 166);
+            this.dtpBirthDate.Location = new System.Drawing.Point(262, 154);
             this.dtpBirthDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpBirthDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpBirthDate.Name = "dtpBirthDate";
             this.dtpBirthDate.ShadowDecoration.Parent = this.dtpBirthDate;
-            this.dtpBirthDate.Size = new System.Drawing.Size(253, 36);
+            this.dtpBirthDate.Size = new System.Drawing.Size(238, 36);
             this.dtpBirthDate.TabIndex = 5;
             this.dtpBirthDate.Value = new System.DateTime(2026, 2, 26, 7, 25, 36, 174);
             // 
@@ -638,9 +635,9 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label6.ForeColor = System.Drawing.Color.DimGray;
-            this.label6.Location = new System.Drawing.Point(287, 71);
+            this.label6.Location = new System.Drawing.Point(259, 65);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(112, 18);
+            this.label6.Size = new System.Drawing.Size(105, 17);
             this.label6.TabIndex = 10;
             this.label6.Text = "Second Name *";
             // 
@@ -650,9 +647,9 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label10.ForeColor = System.Drawing.Color.DimGray;
-            this.label10.Location = new System.Drawing.Point(287, 146);
+            this.label10.Location = new System.Drawing.Point(259, 135);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(104, 18);
+            this.label10.Size = new System.Drawing.Size(97, 17);
             this.label10.TabIndex = 10;
             this.label10.Text = "Date of Birth *";
             // 
@@ -662,9 +659,9 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label11.ForeColor = System.Drawing.Color.DimGray;
-            this.label11.Location = new System.Drawing.Point(832, 145);
+            this.label11.Location = new System.Drawing.Point(767, 135);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 18);
+            this.label11.Size = new System.Drawing.Size(71, 17);
             this.label11.TabIndex = 10;
             this.label11.Text = "Country *";
             // 
@@ -674,9 +671,9 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label12.ForeColor = System.Drawing.Color.DimGray;
-            this.label12.Location = new System.Drawing.Point(288, 216);
+            this.label12.Location = new System.Drawing.Point(259, 199);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(73, 18);
+            this.label12.Size = new System.Drawing.Size(68, 17);
             this.label12.TabIndex = 10;
             this.label12.Text = "Address *";
             // 
@@ -686,9 +683,9 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label5.ForeColor = System.Drawing.Color.DimGray;
-            this.label5.Location = new System.Drawing.Point(8, 214);
+            this.label5.Location = new System.Drawing.Point(7, 199);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 18);
+            this.label5.Size = new System.Drawing.Size(59, 17);
             this.label5.TabIndex = 10;
             this.label5.Text = "Phone *";
             // 
@@ -698,9 +695,9 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label9.ForeColor = System.Drawing.Color.DimGray;
-            this.label9.Location = new System.Drawing.Point(559, 144);
+            this.label9.Location = new System.Drawing.Point(512, 135);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(110, 18);
+            this.label9.Size = new System.Drawing.Size(103, 17);
             this.label9.TabIndex = 10;
             this.label9.Text = "Email (Optional)";
             // 
@@ -710,9 +707,9 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label8.ForeColor = System.Drawing.Color.DimGray;
-            this.label8.Location = new System.Drawing.Point(9, 145);
+            this.label8.Location = new System.Drawing.Point(8, 135);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 18);
+            this.label8.Size = new System.Drawing.Size(86, 17);
             this.label8.TabIndex = 10;
             this.label8.Text = "National ID *";
             // 
@@ -722,9 +719,9 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label7.ForeColor = System.Drawing.Color.DimGray;
-            this.label7.Location = new System.Drawing.Point(832, 69);
+            this.label7.Location = new System.Drawing.Point(767, 63);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(92, 18);
+            this.label7.Size = new System.Drawing.Size(84, 17);
             this.label7.TabIndex = 10;
             this.label7.Text = "Last Name *";
             // 
@@ -734,9 +731,9 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label13.ForeColor = System.Drawing.Color.DimGray;
-            this.label13.Location = new System.Drawing.Point(560, 69);
+            this.label13.Location = new System.Drawing.Point(512, 63);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(154, 18);
+            this.label13.Size = new System.Drawing.Size(142, 17);
             this.label13.TabIndex = 10;
             this.label13.Text = "Third Name (Optional)";
             // 
@@ -746,9 +743,9 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label14.ForeColor = System.Drawing.Color.DimGray;
-            this.label14.Location = new System.Drawing.Point(8, 71);
+            this.label14.Location = new System.Drawing.Point(8, 65);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(92, 18);
+            this.label14.Size = new System.Drawing.Size(84, 17);
             this.label14.TabIndex = 10;
             this.label14.Text = "First Name *";
             // 
@@ -758,9 +755,9 @@
             this.lblFormTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblFormTitle.Font = new System.Drawing.Font("Tahoma", 12.22642F, System.Drawing.FontStyle.Bold);
             this.lblFormTitle.ForeColor = System.Drawing.Color.DimGray;
-            this.lblFormTitle.Location = new System.Drawing.Point(18, 15);
+            this.lblFormTitle.Location = new System.Drawing.Point(15, 14);
             this.lblFormTitle.Name = "lblFormTitle";
-            this.lblFormTitle.Size = new System.Drawing.Size(257, 23);
+            this.lblFormTitle.Size = new System.Drawing.Size(231, 21);
             this.lblFormTitle.TabIndex = 10;
             this.lblFormTitle.Text = "Edit Personal Information";
             // 
@@ -770,9 +767,9 @@
             this.lblFemaleRb.BackColor = System.Drawing.Color.Transparent;
             this.lblFemaleRb.Font = new System.Drawing.Font("Tahoma", 10F);
             this.lblFemaleRb.ForeColor = System.Drawing.Color.DimGray;
-            this.lblFemaleRb.Location = new System.Drawing.Point(1006, 243);
+            this.lblFemaleRb.Location = new System.Drawing.Point(938, 225);
             this.lblFemaleRb.Name = "lblFemaleRb";
-            this.lblFemaleRb.Size = new System.Drawing.Size(55, 18);
+            this.lblFemaleRb.Size = new System.Drawing.Size(50, 17);
             this.lblFemaleRb.TabIndex = 10;
             this.lblFemaleRb.Text = "Female";
             // 
@@ -782,9 +779,9 @@
             this.lblMaleRb.BackColor = System.Drawing.Color.Transparent;
             this.lblMaleRb.Font = new System.Drawing.Font("Tahoma", 10F);
             this.lblMaleRb.ForeColor = System.Drawing.Color.DimGray;
-            this.lblMaleRb.Location = new System.Drawing.Point(862, 241);
+            this.lblMaleRb.Location = new System.Drawing.Point(815, 223);
             this.lblMaleRb.Name = "lblMaleRb";
-            this.lblMaleRb.Size = new System.Drawing.Size(38, 18);
+            this.lblMaleRb.Size = new System.Drawing.Size(34, 17);
             this.lblMaleRb.TabIndex = 10;
             this.lblMaleRb.Text = "Male";
             // 
@@ -794,9 +791,9 @@
             this.lblPersonID.BackColor = System.Drawing.Color.Transparent;
             this.lblPersonID.Font = new System.Drawing.Font("Tahoma", 10F);
             this.lblPersonID.ForeColor = System.Drawing.Color.DimGray;
-            this.lblPersonID.Location = new System.Drawing.Point(938, 18);
+            this.lblPersonID.Location = new System.Drawing.Point(804, 17);
             this.lblPersonID.Name = "lblPersonID";
-            this.lblPersonID.Size = new System.Drawing.Size(93, 18);
+            this.lblPersonID.Size = new System.Drawing.Size(87, 17);
             this.lblPersonID.TabIndex = 10;
             this.lblPersonID.Text = "Not Assigned";
             // 
@@ -806,9 +803,9 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label15.ForeColor = System.Drawing.Color.DimGray;
-            this.label15.Location = new System.Drawing.Point(859, 19);
+            this.label15.Location = new System.Drawing.Point(736, 18);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(73, 18);
+            this.label15.Size = new System.Drawing.Size(69, 17);
             this.label15.TabIndex = 10;
             this.label15.Text = "PersonID:";
             // 
@@ -830,15 +827,14 @@
             this.tbAddress.ForeColor = System.Drawing.Color.Black;
             this.tbAddress.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbAddress.HoverState.Parent = this.tbAddress;
-            this.tbAddress.Location = new System.Drawing.Point(290, 235);
-            this.tbAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbAddress.Location = new System.Drawing.Point(262, 219);
             this.tbAddress.Multiline = true;
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.PasswordChar = '\0';
             this.tbAddress.PlaceholderText = "";
             this.tbAddress.SelectedText = "";
             this.tbAddress.ShadowDecoration.Parent = this.tbAddress;
-            this.tbAddress.Size = new System.Drawing.Size(527, 37);
+            this.tbAddress.Size = new System.Drawing.Size(491, 34);
             this.tbAddress.TabIndex = 11;
             this.tbAddress.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyTextBox_Validating);
             // 
@@ -860,14 +856,13 @@
             this.tbSecondName.ForeColor = System.Drawing.Color.Black;
             this.tbSecondName.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbSecondName.HoverState.Parent = this.tbSecondName;
-            this.tbSecondName.Location = new System.Drawing.Point(289, 92);
-            this.tbSecondName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbSecondName.Location = new System.Drawing.Point(262, 84);
             this.tbSecondName.Name = "tbSecondName";
             this.tbSecondName.PasswordChar = '\0';
             this.tbSecondName.PlaceholderText = "";
             this.tbSecondName.SelectedText = "";
             this.tbSecondName.ShadowDecoration.Parent = this.tbSecondName;
-            this.tbSecondName.Size = new System.Drawing.Size(254, 37);
+            this.tbSecondName.Size = new System.Drawing.Size(238, 36);
             this.tbSecondName.TabIndex = 1;
             this.tbSecondName.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyTextBox_Validating);
             // 
@@ -889,15 +884,14 @@
             this.tbPhone.ForeColor = System.Drawing.Color.Black;
             this.tbPhone.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbPhone.HoverState.Parent = this.tbPhone;
-            this.tbPhone.Location = new System.Drawing.Point(12, 235);
-            this.tbPhone.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbPhone.Location = new System.Drawing.Point(8, 219);
             this.tbPhone.Name = "tbPhone";
             this.tbPhone.PasswordChar = '\0';
             this.tbPhone.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbPhone.PlaceholderText = "05";
             this.tbPhone.SelectedText = "";
             this.tbPhone.ShadowDecoration.Parent = this.tbPhone;
-            this.tbPhone.Size = new System.Drawing.Size(254, 37);
+            this.tbPhone.Size = new System.Drawing.Size(238, 36);
             this.tbPhone.TabIndex = 8;
             this.tbPhone.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyTextBox_Validating);
             // 
@@ -919,14 +913,13 @@
             this.tbEmail.ForeColor = System.Drawing.Color.Black;
             this.tbEmail.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbEmail.HoverState.Parent = this.tbEmail;
-            this.tbEmail.Location = new System.Drawing.Point(563, 166);
-            this.tbEmail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbEmail.Location = new System.Drawing.Point(515, 155);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.PasswordChar = '\0';
             this.tbEmail.PlaceholderText = "";
             this.tbEmail.SelectedText = "";
             this.tbEmail.ShadowDecoration.Parent = this.tbEmail;
-            this.tbEmail.Size = new System.Drawing.Size(254, 37);
+            this.tbEmail.Size = new System.Drawing.Size(238, 36);
             this.tbEmail.TabIndex = 6;
             this.tbEmail.Validating += new System.ComponentModel.CancelEventHandler(this.tbEmail_Validating);
             // 
@@ -948,14 +941,13 @@
             this.tbNationalNumber.ForeColor = System.Drawing.Color.Black;
             this.tbNationalNumber.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbNationalNumber.HoverState.Parent = this.tbNationalNumber;
-            this.tbNationalNumber.Location = new System.Drawing.Point(11, 166);
-            this.tbNationalNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbNationalNumber.Location = new System.Drawing.Point(9, 154);
             this.tbNationalNumber.Name = "tbNationalNumber";
             this.tbNationalNumber.PasswordChar = '\0';
             this.tbNationalNumber.PlaceholderText = "";
             this.tbNationalNumber.SelectedText = "";
             this.tbNationalNumber.ShadowDecoration.Parent = this.tbNationalNumber;
-            this.tbNationalNumber.Size = new System.Drawing.Size(254, 37);
+            this.tbNationalNumber.Size = new System.Drawing.Size(238, 36);
             this.tbNationalNumber.TabIndex = 4;
             this.tbNationalNumber.Validating += new System.ComponentModel.CancelEventHandler(this.tbNationalNumber_Validating);
             // 
@@ -977,14 +969,13 @@
             this.tbLastName.ForeColor = System.Drawing.Color.Black;
             this.tbLastName.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbLastName.HoverState.Parent = this.tbLastName;
-            this.tbLastName.Location = new System.Drawing.Point(836, 92);
-            this.tbLastName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbLastName.Location = new System.Drawing.Point(768, 84);
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.PasswordChar = '\0';
             this.tbLastName.PlaceholderText = "";
             this.tbLastName.SelectedText = "";
             this.tbLastName.ShadowDecoration.Parent = this.tbLastName;
-            this.tbLastName.Size = new System.Drawing.Size(254, 37);
+            this.tbLastName.Size = new System.Drawing.Size(238, 36);
             this.tbLastName.TabIndex = 3;
             this.tbLastName.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyTextBox_Validating);
             // 
@@ -1006,14 +997,13 @@
             this.tbThirdName.ForeColor = System.Drawing.Color.Black;
             this.tbThirdName.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbThirdName.HoverState.Parent = this.tbThirdName;
-            this.tbThirdName.Location = new System.Drawing.Point(563, 92);
-            this.tbThirdName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbThirdName.Location = new System.Drawing.Point(515, 84);
             this.tbThirdName.Name = "tbThirdName";
             this.tbThirdName.PasswordChar = '\0';
             this.tbThirdName.PlaceholderText = "";
             this.tbThirdName.SelectedText = "";
             this.tbThirdName.ShadowDecoration.Parent = this.tbThirdName;
-            this.tbThirdName.Size = new System.Drawing.Size(254, 37);
+            this.tbThirdName.Size = new System.Drawing.Size(238, 36);
             this.tbThirdName.TabIndex = 2;
             // 
             // tbFirstName
@@ -1034,14 +1024,13 @@
             this.tbFirstName.ForeColor = System.Drawing.Color.Black;
             this.tbFirstName.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbFirstName.HoverState.Parent = this.tbFirstName;
-            this.tbFirstName.Location = new System.Drawing.Point(11, 92);
-            this.tbFirstName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbFirstName.Location = new System.Drawing.Point(9, 85);
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.PasswordChar = '\0';
             this.tbFirstName.PlaceholderText = "";
             this.tbFirstName.SelectedText = "";
             this.tbFirstName.ShadowDecoration.Parent = this.tbFirstName;
-            this.tbFirstName.Size = new System.Drawing.Size(254, 37);
+            this.tbFirstName.Size = new System.Drawing.Size(238, 36);
             this.tbFirstName.TabIndex = 0;
             this.tbFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyTextBox_Validating);
             // 
@@ -1062,10 +1051,10 @@
             this.btnSaveChanges.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnSaveChanges.HoverState.Parent = this.btnSaveChanges;
             this.btnSaveChanges.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnSaveChanges.Location = new System.Drawing.Point(1226, 841);
+            this.btnSaveChanges.Location = new System.Drawing.Point(1257, 843);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.ShadowDecoration.Parent = this.btnSaveChanges;
-            this.btnSaveChanges.Size = new System.Drawing.Size(200, 37);
+            this.btnSaveChanges.Size = new System.Drawing.Size(171, 34);
             this.btnSaveChanges.TabIndex = 13;
             this.btnSaveChanges.Text = "Save Changes";
             this.btnSaveChanges.Click += new System.EventHandler(this.btnSave_Click);
@@ -1081,17 +1070,16 @@
             // ctrlAddEditUserPermissions1
             // 
             this.ctrlAddEditUserPermissions1.BackColor = System.Drawing.Color.Transparent;
-            this.ctrlAddEditUserPermissions1.Location = new System.Drawing.Point(324, 446);
+            this.ctrlAddEditUserPermissions1.Location = new System.Drawing.Point(404, 433);
             this.ctrlAddEditUserPermissions1.Name = "ctrlAddEditUserPermissions1";
             this.ctrlAddEditUserPermissions1.PermissionsCardBorderColor = System.Drawing.Color.Gainsboro;
             this.ctrlAddEditUserPermissions1.PermissionsCardBorderThickness = 1;
-            this.ctrlAddEditUserPermissions1.Size = new System.Drawing.Size(1101, 243);
+            this.ctrlAddEditUserPermissions1.Size = new System.Drawing.Size(1024, 269);
             this.ctrlAddEditUserPermissions1.TabIndex = 31;
             // 
             // ctrlSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.guna2Panel1);
             this.Name = "ctrlSettings";
             this.Size = new System.Drawing.Size(1441, 894);

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 
 namespace DataAccessLayer
@@ -16,11 +18,10 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from Dashboard_View;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetDashboardData", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         connection.Open();
-
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -40,10 +41,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }

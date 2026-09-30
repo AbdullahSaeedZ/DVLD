@@ -21,7 +21,7 @@
         }
 
         #region Windows Form Designer generated code
-
+        
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.ControlBoxClose = new Guna.UI2.WinForms.Guna2ControlBox();
             this.ctrlScheduleTestAppointment1 = new PresentationLayer.Applications.TestAppointments.ctrlScheduleTestAppointment();
+            this.ControlBoxClose = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ShadowPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,8 +53,17 @@
             this.guna2ShadowPanel1.Radius = 10;
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel1.ShadowDepth = 240;
-            this.guna2ShadowPanel1.Size = new System.Drawing.Size(815, 623);
+            this.guna2ShadowPanel1.Size = new System.Drawing.Size(699, 578);
             this.guna2ShadowPanel1.TabIndex = 6;
+            // 
+            // ctrlScheduleTestAppointment1
+            // 
+            this.ctrlScheduleTestAppointment1.BackColor = System.Drawing.Color.White;
+            this.ctrlScheduleTestAppointment1.Location = new System.Drawing.Point(10, 33);
+            this.ctrlScheduleTestAppointment1.Name = "ctrlScheduleTestAppointment1";
+            this.ctrlScheduleTestAppointment1.Size = new System.Drawing.Size(678, 537);
+            this.ctrlScheduleTestAppointment1.TabIndex = 10;
+            this.ctrlScheduleTestAppointment1.OnCloseButtonClicked += new System.Action(this.ctrlScheduleTestAppointment1_OnCloseButtonClicked);
             // 
             // ControlBoxClose
             // 
@@ -63,27 +72,18 @@
             this.ControlBoxClose.FillColor = System.Drawing.Color.Transparent;
             this.ControlBoxClose.HoverState.Parent = this.ControlBoxClose;
             this.ControlBoxClose.IconColor = System.Drawing.Color.Gray;
-            this.ControlBoxClose.Location = new System.Drawing.Point(755, 12);
+            this.ControlBoxClose.Location = new System.Drawing.Point(647, 11);
             this.ControlBoxClose.Name = "ControlBoxClose";
             this.ControlBoxClose.ShadowDecoration.Parent = this.ControlBoxClose;
-            this.ControlBoxClose.Size = new System.Drawing.Size(45, 29);
+            this.ControlBoxClose.Size = new System.Drawing.Size(39, 27);
             this.ControlBoxClose.TabIndex = 9;
-            // 
-            // ctrlScheduleTestAppointment1
-            // 
-            this.ctrlScheduleTestAppointment1.BackColor = System.Drawing.Color.White;
-            this.ctrlScheduleTestAppointment1.Location = new System.Drawing.Point(12, 36);
-            this.ctrlScheduleTestAppointment1.Name = "ctrlScheduleTestAppointment1";
-            this.ctrlScheduleTestAppointment1.Size = new System.Drawing.Size(791, 578);
-            this.ctrlScheduleTestAppointment1.TabIndex = 10;
-            this.ctrlScheduleTestAppointment1.OnCloseButtonClicked += new System.Action(this.ctrlScheduleTestAppointment1_OnCloseButtonClicked);
             // 
             // frmScheduleTestAppointment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(815, 623);
+            this.ClientSize = new System.Drawing.Size(699, 578);
             this.Controls.Add(this.guna2ShadowPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmScheduleTestAppointment";
@@ -92,7 +92,6 @@
             this.Load += new System.EventHandler(this.frmScheduleTestAppointment_Load);
             this.guna2ShadowPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion

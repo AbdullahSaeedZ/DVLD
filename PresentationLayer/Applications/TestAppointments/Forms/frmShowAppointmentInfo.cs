@@ -21,6 +21,7 @@ namespace PresentationLayer.Applications.TestAppointments.Forms
             if (_testAppointmentID == -1)
             {
                 MessageBox.Show("Could not get Test Appointment ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
                 return;
             }
 
@@ -29,6 +30,7 @@ namespace PresentationLayer.Applications.TestAppointments.Forms
             if (_TestAppointment == null)
             {
                 MessageBox.Show($"Could not find info of Test Appointment ID {_testAppointmentID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
                 return;
             }
 
@@ -37,6 +39,7 @@ namespace PresentationLayer.Applications.TestAppointments.Forms
             if (_LocalApplication == null)
             {
                 MessageBox.Show("Could not get Local Application Info of selected Appointment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
                 return;
             }
 

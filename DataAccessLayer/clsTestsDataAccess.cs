@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace DataAccessLayer
 {
@@ -10,17 +11,16 @@ namespace DataAccessLayer
         public static bool FindByTestID(int TestID, ref int TestAppointmentID, ref bool TestResult, ref string Notes, ref int CreatedByUserID)
         {
             bool isFound = false;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from Tests where TestID = @ID ;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindByTestID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", TestID);
-                        connection.Open();
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@TestID", TestID);
 
+                        connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -34,10 +34,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -45,18 +45,16 @@ namespace DataAccessLayer
         public static bool FindByTestAppointmentID(int TestAppointmentID, ref int TestID, ref bool TestResult, ref string Notes, ref int CreatedByUserID)
         {
             bool isFound = false;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from Tests where TestAppointmentID = @AppID;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindTestByTestAppointmentID", connection))
                     {
-                        command.Parameters.AddWithValue("@AppID", TestAppointmentID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
                         connection.Open();
-
+            
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.Read())
@@ -72,9 +70,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
 
             return isFound;
@@ -85,24 +84,18 @@ namespace DataAccessLayer
                                         ref int TestID, ref int TestAppointmentID, ref bool TestResult, ref string Notes, ref int CreatedByUserID)
         {
             bool isFound = false;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select top 1 Tests.* from Tests
-                                        inner join TestAppointments TA on TA.TestAppointmentID = Tests.TestAppointmentID 
-                                        inner join LocalDrivingLicenseApplications LA on LA.LocalDrivingLicenseApplicationID =  TA.LocalDrivingLicenseApplicationID
-                                        inner join Applications on Applications.ApplicationID = LA.ApplicationID
-                                        where ApplicantPersonID = @ApplicantPersonID and LA.LicenseClassID = @LicenseClassID and TA.TestTypeID = @TestTypeID 
-                                        order by TestID desc;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindLastTestPerPersonAndLicenseClass", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
                         command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
                         command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+                        
                         connection.Open();
-
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -117,10 +110,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -128,26 +121,15 @@ namespace DataAccessLayer
         public static int AddNewTest(int TestAppointmentID, bool TestResult, string Notes, int CreatedByUserID)
         {
             int NewID = -1;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
                     // adding new test record (test taken) will have to lock the test appointment
-                    // then if the test has an application of retake type then it will be set to completed, cuz test is retaken 
-                    string query = @"insert into Tests 
-                                     values (@TestAppointmentID, @TestResult, @Notes, @CreatedByUserID);
-            
-                                     update TestAppointments 
-                                     set IsLocked=1 where TestAppointmentID = @TestAppointmentID;
-
-                                     update Applications
-                                     set ApplicationStatus = 3 from Applications 
-                                     inner join TestAppointments on TestAppointments.ReTakeTestApplicationID = Applications.ApplicationID
-                                     where TestAppointments.TestAppointmentID = @TestAppointmentID
-                                     select scope_identity();";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    // then --IF-- the test has an application of retake type then it will be set to completed, cuz test is retaken 
+                    using (SqlCommand command = new SqlCommand("usp_AddNewTest", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
                         command.Parameters.AddWithValue("@TestResult", TestResult);
                         command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
@@ -157,18 +139,24 @@ namespace DataAccessLayer
                         else
                             command.Parameters.AddWithValue("@Notes", Notes);
 
+                        SqlParameter newIDParam = new SqlParameter("@NewTestID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(newIDParam);
+                        
                         connection.Open();
-                        object result = command.ExecuteScalar();
+                        command.ExecuteNonQuery();
 
-                        if (result != null && int.TryParse(result.ToString(), out int ID))
-                            NewID = ID;
+                        if (newIDParam.Value is int id)
+                            NewID = id;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return NewID;
         }
@@ -176,17 +164,14 @@ namespace DataAccessLayer
         public static bool UpdateTest(int TestID, int TestAppointmentID, bool TestResult, string Notes, int CreatedByUserID)
         {
             int rowsAffected = 0;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"update Tests 
-                                     set TestAppointmentID = @TestAppointmentID, TestResult = @TestResult, Notes = @Notes, CreatedByUserID = @CreatedByUserID
-                                     where TestID = @ID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_UpdateTest", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", TestID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@@TestID", TestID);
                         command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
                         command.Parameters.AddWithValue("@TestResult", TestResult);
                         command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
@@ -195,16 +180,15 @@ namespace DataAccessLayer
                         else
                             command.Parameters.AddWithValue("@Notes", Notes);
 
-
                         connection.Open();
                         rowsAffected = command.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return (rowsAffected > 0);
         }
@@ -212,14 +196,13 @@ namespace DataAccessLayer
         public static DataTable GetAllTests()
         {
             DataTable dt = new DataTable();
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from Tests;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllTests", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
 
@@ -230,10 +213,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }
@@ -244,61 +227,67 @@ namespace DataAccessLayer
         public static bool IsTestPassedByAppointmentId(int TestAppointmentID)
         {
             bool isPassed = false;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select Tests.TestResult from Tests 
-                                     inner join TestAppointments on Tests.TestAppointmentID = TestAppointments.TestAppointmentID 
-                                     where TestAppointments.TestAppointmentID = @ID and Tests.TestResult = 1;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_IsTestPassedByAppointmentId", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", TestAppointmentID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
                         connection.Open();
 
-                        object result = command.ExecuteScalar();
+                        SqlParameter isPassedParam = new SqlParameter("@IsPassed", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(isPassedParam);
+                        command.ExecuteNonQuery();
 
-                        if (result != null)
-                            isPassed = true;
+                        if (isPassedParam.Value is bool passed)
+                            isPassed = passed;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isPassed;
         }
 
         public static int GetTestIDByAppointmentID(int TestAppointmentID)
         {
-            int NewID = -1;
-
+            int TestID = -1;
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select TestID from Tests where TestAppointmentID = @ID ;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetTestIDByAppointmentID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", TestAppointmentID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
                         connection.Open();
 
-                        object result = command.ExecuteScalar();
+                        SqlParameter newIDParam = new SqlParameter("@TestID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(newIDParam);
+                        command.ExecuteNonQuery();
 
-                        if (result != null && int.TryParse(result.ToString(), out int ID))
-                            NewID = ID;
+                        if (newIDParam.Value is int id)
+                             TestID = id;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
-            return NewID;
+            return TestID;
         }
 
     }

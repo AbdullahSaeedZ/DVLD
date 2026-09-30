@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace DataAccessLayer
 {
@@ -14,12 +15,12 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from Drivers where DriverID = @ID ;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindByDriverID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", DriverID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@DriverID", DriverID);
+                        
                         connection.Open();
-
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -33,10 +34,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -49,12 +50,12 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from Drivers where PersonID = @ID ;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindByPersonID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", PersonID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@PersonID", PersonID);
+                        
                         connection.Open();
-
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -68,10 +69,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -84,27 +85,31 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"insert into Drivers 
-                                     values (@PersonID, @CreatedByUserID, @CreatedDate);
-                                     select scope_identity();";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_AddNewDriver", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@PersonID", PersonID);
                         command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
                         command.Parameters.AddWithValue("@CreatedDate", CreatedDate);
+                        
+                        SqlParameter newDriverIDParam = new SqlParameter("@NewDriverID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(newDriverIDParam);
 
                         connection.Open();
-                        object result = command.ExecuteScalar();
+                        command.ExecuteNonQuery();
 
-                        if (result != null && int.TryParse(result.ToString(), out int ID))
-                            NewID = ID;
+                        if (newDriverIDParam.Value is int id)
+                            NewID = id;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return NewID;
         }
@@ -116,25 +121,23 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"update Drivers 
-                                     set PersonID = @PersonID, CreatedByUserID = @CreatedByUserID, CreatedDate = @CreatedDate;
-                                     where DriverID = @DriverID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_UpdateDriver", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@DriverID", DriverID);
                         command.Parameters.AddWithValue("@PersonID", PersonID);
                         command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
                         command.Parameters.AddWithValue("@CreatedDate", CreatedDate);
-
+                        
                         connection.Open();
                         rowsAffected = command.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return (rowsAffected > 0);
         }
@@ -147,9 +150,9 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from Drivers_View;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllDrivers", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
 
@@ -160,10 +163,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }

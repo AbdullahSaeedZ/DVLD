@@ -137,7 +137,7 @@
             // ctrlLocalDrivingLicenseInfoWithFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.pnlFilter);
             this.Controls.Add(this.ctrlLocalDrivingLicenseInfo1);
             this.Name = "ctrlLocalDrivingLicenseInfoWithFilter";

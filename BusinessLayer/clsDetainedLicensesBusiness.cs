@@ -113,26 +113,17 @@ namespace BusinessLayer
         {
             if (ReleasedByUser == null || this.IsReleased)
                 return -1;
-
-            clsApplicationsBusiness ReleaseLicenseApplication = new clsApplicationsBusiness();
-            ReleaseLicenseApplication.ApplicationTypeID = clsApplicationTypesBusiness.enApplicationTypes.eReleaseDetainedDrivingLicense;
-            ReleaseLicenseApplication.ApplicationStatus = clsApplicationsBusiness.enApplicationStatus.New;
-            ReleaseLicenseApplication.ApplicantPersonID = PersonID;
-            ReleaseLicenseApplication.CreatedByUserID = ReleasedByUser.UserID;
-            ReleaseLicenseApplication.PaidFees = clsApplicationTypesBusiness.FindApplicationType(clsApplicationTypesBusiness.enApplicationTypes.eReleaseDetainedDrivingLicense).ApplicationTypeFees;
-
-            if (!ReleaseLicenseApplication.Save())
-                return -1;
-
-            if (!clsDetainedLicensesDataAccess.ReleaseDetainedLicense(this.LicenseID, DateTime.Now, ReleasedByUser.UserID, ReleaseLicenseApplication.ApplicationID))
+            
+            // the whole process of releasing license is done in a transaction, which includes creating a new application for releasing license
+            // and updating detained license record
+            this.ReleaseApplicationID = clsDetainedLicensesDataAccess.ReleaseDetainedLicense(this.LicenseID, DateTime.Now, ReleasedByUser.UserID);
+            if (this.ReleaseApplicationID == -1)
                 return -1;
 
             this.IsReleased = true;
             this.ReleaseDate = DateTime.Now;
             this.ReleasedByUserID = ReleasedByUser.UserID;
-            this.ReleaseApplicationID = ReleaseLicenseApplication.ApplicationID;
-
-            return ReleaseLicenseApplication.ApplicationID;
+            return this.ReleaseApplicationID;
         }
 
         public bool Save()

@@ -94,16 +94,9 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
             if (MessageBox.Show("Are you sure to proceed with license issuance?", "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel)
                 return;
 
-            int NewInternationalApplicationID = _HandleCreatingInternationalLicenseApplication();
-            if (NewInternationalApplicationID == -1)
-            {
-                MessageBox.Show("Failed to create new International Driving License Application", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             try
             {
-                _InternationalLicenseID = ctrlLocalDrivingLicenseInfoWithFilter1.SelectedLicenseInfo.IssueInternationalLicense(NewInternationalApplicationID, clsGlobal.CurrentUser);
+                _InternationalLicenseID = ctrlLocalDrivingLicenseInfoWithFilter1.SelectedLicenseInfo.IssueInternationalLicense(clsGlobal.CurrentUser);
             }
             catch (Exception ex)
             {
@@ -115,6 +108,7 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
             {
                 MessageBox.Show($"International License is successfully issued with ID {_InternationalLicenseID}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lblInterLicenseID.Text = _InternationalLicenseID.ToString();
+                lblInterApplicationID.Text = clsInternationalLicensesBusiness.Find(_InternationalLicenseID).ApplicationID.ToString();
                 btnShowLicenseInfo.Enabled = true;
                 btnIssueLicense.Enabled = false;
                 ctrlLocalDrivingLicenseInfoWithFilter1.FilterEnabled = false;
@@ -123,27 +117,6 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
             else
                 MessageBox.Show($"Data was not saved successfully", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
-        private int _HandleCreatingInternationalLicenseApplication()
-        {
-            
-            clsApplicationsBusiness InternationalApplication = new clsApplicationsBusiness();
-
-            InternationalApplication.ApplicationTypeID = clsApplicationTypesBusiness.enApplicationTypes.eNewInternationalLicense;
-            InternationalApplication.ApplicationStatus = clsApplicationsBusiness.enApplicationStatus.New;
-            InternationalApplication.ApplicantPersonID = ctrlLocalDrivingLicenseInfoWithFilter1.SelectedLicenseInfo.DriverInfo.PersonID;
-            InternationalApplication.CreatedByUserID = clsGlobal.CurrentUser.UserID;
-            InternationalApplication.PaidFees = Convert.ToSingle(lblFees.Text);
-
-            if (InternationalApplication.Save())
-            {
-                lblInterApplicationID.Text = InternationalApplication.ApplicationID.ToString();
-                return InternationalApplication.ApplicationID;
-            }
-            else
-                return -1;
-        }
-
 
         private void btnShowLicenseInfo_Click(object sender, EventArgs e)
         {

@@ -24,8 +24,13 @@ namespace PresentationLayer.Applications.TestAppointments.Forms
 
         private void frmTakeTest_Load(object sender, EventArgs e)
         {
-            ctrlScheduledTestInfo1.LoadInfo(_testAppointmentID, _TestType);
-
+            if (!ctrlScheduledTestInfo1.LoadInfo(_testAppointmentID, _TestType))
+            {
+                this.Close();
+                return;
+            }
+            btnSave.Enabled = (rbPass.Checked || rbFail.Checked);
+            
             if (ctrlScheduledTestInfo1.TestAppointmentID == -1)
             {
                 MessageBox.Show("Could not get Test Appointment data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -84,6 +89,11 @@ namespace PresentationLayer.Applications.TestAppointments.Forms
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        
+        private void rb_CheckedChanged(object sender, EventArgs e)
+        {
+            btnSave.Enabled = true;
         }
     }
     

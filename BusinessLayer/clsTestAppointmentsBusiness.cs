@@ -73,10 +73,10 @@ namespace BusinessLayer
                 return null;
         }
 
-        private bool _AddNewTestAppointment()
+        private bool _AddNewTestAppointment(bool isRetakeAppointment)
         {
             this.TestAppointmentID = clsTestAppointmentsDataAccess.AddNewTestAppointment((byte)this.TestTypeID, this.LocalDrivingLicenseApplicationID, this.AppointmentDate, this.PaidFees,
-                                     this.CreatedByUserID, this.IsLocked, this.RetakeTestApplicationID);
+                                     this.CreatedByUserID, this.IsLocked, isRetakeAppointment);
 
             return (this.TestAppointmentID != -1);
         }
@@ -92,12 +92,12 @@ namespace BusinessLayer
 
         }
 
-        public bool Save()
+        public bool Save(bool isRetakeAppointment)
         {
             switch (_mode)
             {
                 case enMode.eAddMode:
-                    if (_AddNewTestAppointment())
+                    if (_AddNewTestAppointment(isRetakeAppointment))
                     {
                         _mode = enMode.eUpdateMode;
                         return true;

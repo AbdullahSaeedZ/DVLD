@@ -52,7 +52,7 @@ namespace PresentationLayer.Applications.TestAppointments
             InitializeComponent();
         }
 
-        public void LoadInfo(int TestAppointmentID, clsTestTypesBusiness.enTestType TestType)
+        public bool LoadInfo(int TestAppointmentID, clsTestTypesBusiness.enTestType TestType)
         {
             this.TestType = TestType;
             _TestAppointmentID = TestAppointmentID;
@@ -61,7 +61,7 @@ namespace PresentationLayer.Applications.TestAppointments
             if (_TestAppointment == null)
             {
                 MessageBox.Show($"Could not get info of Test Appointment with ID{TestAppointmentID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
 
             _LocalApplicationID = _TestAppointment.LocalDrivingLicenseApplicationID;
@@ -70,7 +70,7 @@ namespace PresentationLayer.Applications.TestAppointments
             if (_TestAppointment == null)
             {
                 MessageBox.Show($"Could not get info of Local Application with ID{_TestAppointment.LocalDrivingLicenseApplicationID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
 
             lblTestTrials.Text = _LocalApplication.GetTotalTestTrialsPerTestType(_TestType).ToString();
@@ -82,6 +82,8 @@ namespace PresentationLayer.Applications.TestAppointments
 
             _TestID = _TestAppointment.GetTestID();
             lblTestID.Text = _TestID == -1 ? "Not Assigned Yet" : _TestID.ToString();
+            
+            return true;
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using static System.Net.Mime.MediaTypeNames;
-
+using System.Diagnostics;
 
 namespace DataAccessLayer
 {
@@ -12,15 +11,14 @@ namespace DataAccessLayer
                                               ref string Notes, ref float PaidFees, ref bool IsActive, ref byte IssueReason, ref int CreatedByUserID)
         {
             bool isFound = false;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from Licenses where LicenseID = @ID ;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindLicenseByLicenseID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", LicenseID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@LicenseID", LicenseID);
                         connection.Open();
 
                         SqlDataReader reader = command.ExecuteReader();
@@ -42,33 +40,27 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
-
+        
         public static int AddNewLicense(int ApplicationID, int DriverID, byte LicenseClassID, DateTime IssueDate, DateTime ExpirationDate,
                                    string Notes, float PaidFees, bool IsActive, byte IssueReason, int CreatedByUserID)
         {
+            // if application id is not -1, then it is a new license issued for first time using an existing local application 
+            // other wise new application id will be given in DB
             int NewID = -1;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    // once a license is created, then application status directly becomes completed (represented as 3 in DB)
-                    string query = @"insert into Licenses 
-                                     values (@ApplicationID, @DriverID, @LicenseClassID, @IssueDate, @ExpirationDate, @Notes, @PaidFees, @IsActive, @IssueReason, @CreatedByUserID);
-
-                                     update Applications
-                                     set ApplicationStatus = 3 where ApplicationID = @ApplicationID;
-
-                                     select scope_identity();";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_AddNewLicense", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
                         command.Parameters.AddWithValue("@DriverID", DriverID);
                         command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
@@ -84,18 +76,22 @@ namespace DataAccessLayer
                         else
                             command.Parameters.AddWithValue("@Notes", Notes);
 
-                        connection.Open();
-                        object result = command.ExecuteScalar();
+                        SqlParameter newIDParam = new SqlParameter("@NewLicenseID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(newIDParam);
 
-                        if (result != null && int.TryParse(result.ToString(), out int ID))
-                            NewID = ID;
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        if (newIDParam.Value is int id)
+                            NewID = id;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, $"Method: AddNewLicense - {ex.Message}", ex.StackTrace);
             }
             return NewID;
         }
@@ -103,18 +99,14 @@ namespace DataAccessLayer
                                    string Notes, float PaidFees, bool IsActive, byte IssueReason, int CreatedByUserID)
         {
             int rowsAffected = 0;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"update Licenses 
-                                     set ApplicationID = @ApplicationID, DriverID = @DriverID, LicenseClassID = @LicenseClassID, IssueDate = @IssueDate, 
-                                     ExpirationDate = @ExpirationDate, Notes = @Notes, PaidFees = @PaidFees, IsActive = @IsActive, IssueReason = @IssueReason, CreatedByUserID = @CreatedByUserID
-                                     where LicenseID = @ID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_UpdateLicense", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", LicenseID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@LicenseID", LicenseID);
                         command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
                         command.Parameters.AddWithValue("@DriverID", DriverID);
                         command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
@@ -135,10 +127,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return (rowsAffected > 0);
         }
@@ -146,31 +138,34 @@ namespace DataAccessLayer
         public static bool DidPersonIssueLicense(int PersonID, byte LicenseClassID)
         {
             bool isFound = false;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select Found = 1 from Licenses
-                                     inner join Drivers on Drivers.DriverID = Licenses.DriverID
-                                     where Drivers.PersonID = @ID and Licenses.LicenseClass = @LicenseClassID";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_DidPersonIssueLicense", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", PersonID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@PersonID", PersonID);
                         command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+
+                        SqlParameter didIssueParam = new SqlParameter("@DidIssue", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(didIssueParam);
+                        
                         connection.Open();
+                        command.ExecuteNonQuery();
 
-                        object result = command.ExecuteScalar();
-
-                        if (result != null)
-                            isFound = true;
+                        if (didIssueParam.Value is bool didIssue)
+                            isFound = didIssue;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -178,26 +173,24 @@ namespace DataAccessLayer
         public static bool DeactivateLicense(int LicenseID)
         {
             int rowsAffected = 0;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"update Licenses 
-                                     set IsActive = 0 where LicenseID = @ID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_DeactivateLicense", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", LicenseID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@LicenseID", LicenseID);
 
                         connection.Open();
                         rowsAffected = command.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return (rowsAffected > 0);
         }
@@ -205,32 +198,33 @@ namespace DataAccessLayer
         public static int GetActiveLicenseIDByPersonID(int PersonID, byte LicenseClassID)
         {
             int LicenseID = -1;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select Licenses.LicenseID
-                                     from Licenses 
-                                     inner join Drivers on Licenses.DriverID = Drivers.DriverID
-                                     where Licenses.LicenseClass = @LicenseClassID and Drivers.PersonID = @PersonID and IsActive = 1;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetActiveLicenseIDByPersonID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@PersonID", PersonID);
                         command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+    
+                        SqlParameter activeLicenseIDParam = new SqlParameter("@ActiveLicenseID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(activeLicenseIDParam);
                         connection.Open();
+                        command.ExecuteNonQuery();
 
-                        object result = command.ExecuteScalar();
-
-                        if (result != null && int.TryParse(result.ToString(), out int ID))
-                            LicenseID = ID;
+                        if (activeLicenseIDParam.Value is int id)
+                            LicenseID = id;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return LicenseID;
         }
@@ -238,32 +232,31 @@ namespace DataAccessLayer
         public static int GetLicenseIDbyLocalApplicationID(int LocalApplicationID)
         {
             int LicenseID = -1;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    // gets the first time issued local license by LocalLicenseApplicationID
-                    string query = @"select Licenses.LicenseID 
-                                     from Licenses
-                                     inner join LocalDrivingLicenseApplications as LA on LA.ApplicationID = Licenses.ApplicationID
-                                     where LA.LocalDrivingLicenseApplicationID = @LocalApplicationID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetLicenseIDbyLocalApplicationID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@LocalApplicationID", LocalApplicationID);
+                        SqlParameter licenseIDParam = new SqlParameter("@LicenseID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(licenseIDParam);
                         connection.Open();
+                        command.ExecuteNonQuery();
 
-                        object result = command.ExecuteScalar();
-
-                        if (result != null && int.TryParse(result.ToString(), out int ID))
-                            LicenseID = ID;
+                        if (licenseIDParam.Value is int id)
+                            LicenseID = id;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return LicenseID;
         }
@@ -271,14 +264,13 @@ namespace DataAccessLayer
         public static DataTable GetAllLicenses()
         {
             DataTable dt = new DataTable();
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from Licenses;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllLicenses", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
 
@@ -289,28 +281,24 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }
+        
         public static DataTable GetAllLocalLicensesByPersonID(int PersonID)
         {
             DataTable dt = new DataTable();
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select Licenses.LicenseID, Licenses.ApplicationID, LicenseClasses.ClassName, Licenses.IssueDate, Licenses.ExpirationDate, Licenses.IsActive
-                                     from Licenses 
-                                     inner join Drivers on Drivers.DriverID = Licenses.DriverID
-                                     inner join LicenseClasses on LicenseClasses.LicenseClassID = Licenses.LicenseClass
-                                     where Drivers.PersonID = @PersonID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllLocalLicensesByPersonID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@PersonID", PersonID);
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
@@ -322,10 +310,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }

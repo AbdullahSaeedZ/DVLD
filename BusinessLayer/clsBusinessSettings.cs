@@ -91,7 +91,7 @@ namespace BusinessLayer
             }
             catch (IOException i)
             {
-                throw;
+                
             }
         }
 

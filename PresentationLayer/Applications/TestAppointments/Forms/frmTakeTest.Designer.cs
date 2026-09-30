@@ -21,7 +21,7 @@
         }
 
         #region Windows Form Designer generated code
-
+        
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -106,7 +106,7 @@
             this.lblDeniedUpdate.ForeColor = System.Drawing.Color.Red;
             this.lblDeniedUpdate.Location = new System.Drawing.Point(163, 18);
             this.lblDeniedUpdate.Name = "lblDeniedUpdate";
-            this.lblDeniedUpdate.Size = new System.Drawing.Size(503, 21);
+            this.lblDeniedUpdate.Size = new System.Drawing.Size(435, 18);
             this.lblDeniedUpdate.TabIndex = 15;
             this.lblDeniedUpdate.Text = "Person has performed the test, cannot change test result.";
             this.lblDeniedUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -153,7 +153,7 @@
             this.rbFail.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbFail.Location = new System.Drawing.Point(241, 60);
             this.rbFail.Name = "rbFail";
-            this.rbFail.Size = new System.Drawing.Size(46, 22);
+            this.rbFail.Size = new System.Drawing.Size(44, 21);
             this.rbFail.TabIndex = 10;
             this.rbFail.TabStop = true;
             this.rbFail.Text = "Fail";
@@ -162,6 +162,7 @@
             this.rbFail.UncheckedState.FillColor = System.Drawing.Color.Transparent;
             this.rbFail.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
             this.rbFail.UseVisualStyleBackColor = true;
+            this.rbFail.CheckedChanged += new System.EventHandler(this.rb_CheckedChanged);
             // 
             // rbPass
             // 
@@ -174,7 +175,7 @@
             this.rbPass.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbPass.Location = new System.Drawing.Point(167, 60);
             this.rbPass.Name = "rbPass";
-            this.rbPass.Size = new System.Drawing.Size(56, 22);
+            this.rbPass.Size = new System.Drawing.Size(53, 21);
             this.rbPass.TabIndex = 10;
             this.rbPass.TabStop = true;
             this.rbPass.Text = "Pass";
@@ -183,6 +184,7 @@
             this.rbPass.UncheckedState.FillColor = System.Drawing.Color.Transparent;
             this.rbPass.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
             this.rbPass.UseVisualStyleBackColor = true;
+            this.rbPass.CheckedChanged += new System.EventHandler(this.rb_CheckedChanged);
             // 
             // label1
             // 
@@ -191,7 +193,7 @@
             this.label1.ForeColor = System.Drawing.Color.DimGray;
             this.label1.Location = new System.Drawing.Point(16, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 29);
+            this.label1.Size = new System.Drawing.Size(58, 27);
             this.label1.TabIndex = 2;
             this.label1.Text = "Test";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -204,7 +206,7 @@
             this.label23.ForeColor = System.Drawing.Color.DimGray;
             this.label23.Location = new System.Drawing.Point(385, 62);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(57, 18);
+            this.label23.Size = new System.Drawing.Size(54, 17);
             this.label23.TabIndex = 7;
             this.label23.Text = "Notes:";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -217,7 +219,7 @@
             this.label3.ForeColor = System.Drawing.Color.DimGray;
             this.label3.Location = new System.Drawing.Point(52, 64);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 18);
+            this.label3.Size = new System.Drawing.Size(90, 17);
             this.label3.TabIndex = 7;
             this.label3.Text = "Test Result:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -287,8 +289,7 @@
             // 
             // frmTakeTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(814, 594);
             this.Controls.Add(this.guna2ShadowPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -300,7 +301,6 @@
             this.pnlTakeTest.ResumeLayout(false);
             this.pnlTakeTest.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion

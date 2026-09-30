@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 
 namespace DataAccessLayer
@@ -15,11 +16,10 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from ApplicationTypes where ApplicationTypeID = @ID;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindApplicationTypeByID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", ID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@applicationTypeID", ID);
 
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
@@ -33,10 +33,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -48,31 +48,25 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"update ApplicationTypes
-                                     set ApplicationTypeTitle = @Title, ApplicationFees = @Fees
-                                     where ApplicationTypeID = @ID;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_UpdateApplicationTypeByID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", ID);
-                        command.Parameters.AddWithValue("@Title", applicationTypeTitle);
-                        command.Parameters.AddWithValue("@Fees", applicationTypeFees);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@applicationTypeID", ID);
+                        command.Parameters.AddWithValue("@applicationTypeTitle", applicationTypeTitle);
+                        command.Parameters.AddWithValue("@applicationTypeFees", applicationTypeFees);
 
                         connection.Open();
                         rowsAffected = command.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return (rowsAffected > 0);
         }
-
-
-
         public static DataTable GetAllApplicationTypes()
         {
             DataTable dt = new DataTable();
@@ -81,10 +75,9 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from ApplicationTypes;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllApplicationTypes", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
 
@@ -95,10 +88,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }

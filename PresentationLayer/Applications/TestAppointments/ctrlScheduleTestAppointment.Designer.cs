@@ -21,14 +21,15 @@
         }
 
         #region Component Designer generated code
-
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.pnlBasicInfo = new Guna.UI2.WinForms.Guna2Panel();
+            this.dtpTimePicker = new System.Windows.Forms.DateTimePicker();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lblUserMessage = new System.Windows.Forms.Label();
             this.dtpAppointmentDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -36,6 +37,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblTestFees = new System.Windows.Forms.Label();
@@ -57,8 +59,6 @@
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtpTimePicker = new System.Windows.Forms.DateTimePicker();
             this.pnlBasicInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.pnlRetakeAppInfo.SuspendLayout();
@@ -90,19 +90,29 @@
             this.pnlBasicInfo.Controls.Add(this.lblLicenseDrivingClass);
             this.pnlBasicInfo.Controls.Add(this.label2);
             this.pnlBasicInfo.FillColor = System.Drawing.Color.White;
-            this.pnlBasicInfo.Location = new System.Drawing.Point(3, 59);
+            this.pnlBasicInfo.Location = new System.Drawing.Point(3, 55);
             this.pnlBasicInfo.Name = "pnlBasicInfo";
             this.pnlBasicInfo.ShadowDecoration.Parent = this.pnlBasicInfo;
-            this.pnlBasicInfo.Size = new System.Drawing.Size(784, 318);
+            this.pnlBasicInfo.Size = new System.Drawing.Size(672, 295);
             this.pnlBasicInfo.TabIndex = 16;
+            // 
+            // dtpTimePicker
+            // 
+            this.dtpTimePicker.CustomFormat = "hh:mm tt";
+            this.dtpTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTimePicker.Location = new System.Drawing.Point(450, 175);
+            this.dtpTimePicker.Name = "dtpTimePicker";
+            this.dtpTimePicker.ShowUpDown = true;
+            this.dtpTimePicker.Size = new System.Drawing.Size(84, 20);
+            this.dtpTimePicker.TabIndex = 28;
             // 
             // guna2PictureBox1
             // 
             this.guna2PictureBox1.Image = global::PresentationLayer.Properties.Resources.Saudi_Riyal_Symbol1;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(347, 261);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(297, 242);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
             this.guna2PictureBox1.ShadowDecoration.Parent = this.guna2PictureBox1;
-            this.guna2PictureBox1.Size = new System.Drawing.Size(18, 24);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(15, 22);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2PictureBox1.TabIndex = 27;
             this.guna2PictureBox1.TabStop = false;
@@ -113,9 +123,9 @@
             this.lblUserMessage.AutoSize = true;
             this.lblUserMessage.Font = new System.Drawing.Font("Tahoma", 11.18868F, System.Drawing.FontStyle.Bold);
             this.lblUserMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblUserMessage.Location = new System.Drawing.Point(84, 48);
+            this.lblUserMessage.Location = new System.Drawing.Point(72, 45);
             this.lblUserMessage.Name = "lblUserMessage";
-            this.lblUserMessage.Size = new System.Drawing.Size(477, 21);
+            this.lblUserMessage.Size = new System.Drawing.Size(411, 18);
             this.lblUserMessage.TabIndex = 15;
             this.lblUserMessage.Text = "Person has performed the test, Appointment is locked.";
             this.lblUserMessage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -133,12 +143,12 @@
             this.dtpAppointmentDate.ForeColor = System.Drawing.Color.Black;
             this.dtpAppointmentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpAppointmentDate.HoverState.Parent = this.dtpAppointmentDate;
-            this.dtpAppointmentDate.Location = new System.Drawing.Point(309, 183);
+            this.dtpAppointmentDate.Location = new System.Drawing.Point(265, 170);
             this.dtpAppointmentDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpAppointmentDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpAppointmentDate.Name = "dtpAppointmentDate";
             this.dtpAppointmentDate.ShadowDecoration.Parent = this.dtpAppointmentDate;
-            this.dtpAppointmentDate.Size = new System.Drawing.Size(141, 33);
+            this.dtpAppointmentDate.Size = new System.Drawing.Size(121, 31);
             this.dtpAppointmentDate.TabIndex = 14;
             this.dtpAppointmentDate.Value = new System.DateTime(2026, 4, 12, 0, 0, 0, 0);
             // 
@@ -148,9 +158,9 @@
             this.lblLocalApplicationID.AutoSize = true;
             this.lblLocalApplicationID.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocalApplicationID.ForeColor = System.Drawing.Color.Black;
-            this.lblLocalApplicationID.Location = new System.Drawing.Point(310, 84);
+            this.lblLocalApplicationID.Location = new System.Drawing.Point(266, 78);
             this.lblLocalApplicationID.Name = "lblLocalApplicationID";
-            this.lblLocalApplicationID.Size = new System.Drawing.Size(27, 18);
+            this.lblLocalApplicationID.Size = new System.Drawing.Size(25, 17);
             this.lblLocalApplicationID.TabIndex = 9;
             this.lblLocalApplicationID.Text = "NA";
             // 
@@ -160,9 +170,9 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.DimGray;
-            this.label13.Location = new System.Drawing.Point(187, 228);
+            this.label13.Location = new System.Drawing.Point(160, 212);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(92, 18);
+            this.label13.Size = new System.Drawing.Size(83, 17);
             this.label13.TabIndex = 4;
             this.label13.Text = "Test Trials:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -173,9 +183,9 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.DimGray;
-            this.label11.Location = new System.Drawing.Point(195, 264);
+            this.label11.Location = new System.Drawing.Point(167, 245);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(84, 18);
+            this.label11.Size = new System.Drawing.Size(78, 17);
             this.label11.TabIndex = 5;
             this.label11.Text = "Test Fees:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -186,12 +196,25 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.DimGray;
-            this.label14.Location = new System.Drawing.Point(97, 192);
+            this.label14.Location = new System.Drawing.Point(83, 178);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(182, 18);
+            this.label14.Size = new System.Drawing.Size(174, 17);
             this.label14.TabIndex = 5;
             this.label14.Text = "Test Appointment Date:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.DimGray;
+            this.label4.Location = new System.Drawing.Point(402, 175);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 17);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Time:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label12
             // 
@@ -199,9 +222,9 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.DimGray;
-            this.label12.Location = new System.Drawing.Point(196, 120);
+            this.label12.Location = new System.Drawing.Point(168, 111);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(83, 18);
+            this.label12.Size = new System.Drawing.Size(77, 17);
             this.label12.TabIndex = 6;
             this.label12.Text = "Applicant:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -212,9 +235,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DimGray;
-            this.label5.Location = new System.Drawing.Point(40, 84);
+            this.label5.Location = new System.Drawing.Point(34, 78);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(239, 18);
+            this.label5.Size = new System.Drawing.Size(216, 17);
             this.label5.TabIndex = 7;
             this.label5.Text = "Driving License Application ID:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -225,9 +248,9 @@
             this.lblTestFees.AutoSize = true;
             this.lblTestFees.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTestFees.ForeColor = System.Drawing.Color.Black;
-            this.lblTestFees.Location = new System.Drawing.Point(310, 264);
+            this.lblTestFees.Location = new System.Drawing.Point(266, 245);
             this.lblTestFees.Name = "lblTestFees";
-            this.lblTestFees.Size = new System.Drawing.Size(27, 18);
+            this.lblTestFees.Size = new System.Drawing.Size(25, 17);
             this.lblTestFees.TabIndex = 10;
             this.lblTestFees.Text = "NA";
             // 
@@ -237,9 +260,9 @@
             this.lblTestTrials.AutoSize = true;
             this.lblTestTrials.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTestTrials.ForeColor = System.Drawing.Color.Black;
-            this.lblTestTrials.Location = new System.Drawing.Point(310, 228);
+            this.lblTestTrials.Location = new System.Drawing.Point(266, 212);
             this.lblTestTrials.Name = "lblTestTrials";
-            this.lblTestTrials.Size = new System.Drawing.Size(27, 18);
+            this.lblTestTrials.Size = new System.Drawing.Size(25, 17);
             this.lblTestTrials.TabIndex = 11;
             this.lblTestTrials.Text = "NA";
             // 
@@ -249,9 +272,9 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.DimGray;
-            this.label8.Location = new System.Drawing.Point(167, 156);
+            this.label8.Location = new System.Drawing.Point(143, 145);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(112, 18);
+            this.label8.Size = new System.Drawing.Size(100, 17);
             this.label8.TabIndex = 8;
             this.label8.Text = "Driving Class:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -262,9 +285,9 @@
             this.lblApplicantName.AutoSize = true;
             this.lblApplicantName.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApplicantName.ForeColor = System.Drawing.Color.Black;
-            this.lblApplicantName.Location = new System.Drawing.Point(310, 120);
+            this.lblApplicantName.Location = new System.Drawing.Point(266, 111);
             this.lblApplicantName.Name = "lblApplicantName";
-            this.lblApplicantName.Size = new System.Drawing.Size(27, 18);
+            this.lblApplicantName.Size = new System.Drawing.Size(25, 17);
             this.lblApplicantName.TabIndex = 12;
             this.lblApplicantName.Text = "NA";
             // 
@@ -274,9 +297,9 @@
             this.lblLicenseDrivingClass.AutoSize = true;
             this.lblLicenseDrivingClass.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLicenseDrivingClass.ForeColor = System.Drawing.Color.Black;
-            this.lblLicenseDrivingClass.Location = new System.Drawing.Point(310, 156);
+            this.lblLicenseDrivingClass.Location = new System.Drawing.Point(266, 145);
             this.lblLicenseDrivingClass.Name = "lblLicenseDrivingClass";
-            this.lblLicenseDrivingClass.Size = new System.Drawing.Size(27, 18);
+            this.lblLicenseDrivingClass.Size = new System.Drawing.Size(25, 17);
             this.lblLicenseDrivingClass.TabIndex = 13;
             this.lblLicenseDrivingClass.Text = "NA";
             // 
@@ -285,9 +308,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(16, 11);
+            this.label2.Location = new System.Drawing.Point(14, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 29);
+            this.label2.Size = new System.Drawing.Size(123, 27);
             this.label2.TabIndex = 2;
             this.label2.Text = "Basic Info";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -308,19 +331,19 @@
             this.pnlRetakeAppInfo.Controls.Add(this.label23);
             this.pnlRetakeAppInfo.Controls.Add(this.label3);
             this.pnlRetakeAppInfo.FillColor = System.Drawing.Color.White;
-            this.pnlRetakeAppInfo.Location = new System.Drawing.Point(3, 383);
+            this.pnlRetakeAppInfo.Location = new System.Drawing.Point(3, 356);
             this.pnlRetakeAppInfo.Name = "pnlRetakeAppInfo";
             this.pnlRetakeAppInfo.ShadowDecoration.Parent = this.pnlRetakeAppInfo;
-            this.pnlRetakeAppInfo.Size = new System.Drawing.Size(784, 141);
+            this.pnlRetakeAppInfo.Size = new System.Drawing.Size(672, 131);
             this.pnlRetakeAppInfo.TabIndex = 17;
             // 
             // guna2PictureBox3
             // 
             this.guna2PictureBox3.Image = global::PresentationLayer.Properties.Resources.Saudi_Riyal_Symbol1;
-            this.guna2PictureBox3.Location = new System.Drawing.Point(641, 61);
+            this.guna2PictureBox3.Location = new System.Drawing.Point(549, 57);
             this.guna2PictureBox3.Name = "guna2PictureBox3";
             this.guna2PictureBox3.ShadowDecoration.Parent = this.guna2PictureBox3;
-            this.guna2PictureBox3.Size = new System.Drawing.Size(18, 24);
+            this.guna2PictureBox3.Size = new System.Drawing.Size(15, 22);
             this.guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2PictureBox3.TabIndex = 32;
             this.guna2PictureBox3.TabStop = false;
@@ -328,10 +351,10 @@
             // guna2PictureBox2
             // 
             this.guna2PictureBox2.Image = global::PresentationLayer.Properties.Resources.Saudi_Riyal_Symbol1;
-            this.guna2PictureBox2.Location = new System.Drawing.Point(347, 98);
+            this.guna2PictureBox2.Location = new System.Drawing.Point(297, 91);
             this.guna2PictureBox2.Name = "guna2PictureBox2";
             this.guna2PictureBox2.ShadowDecoration.Parent = this.guna2PictureBox2;
-            this.guna2PictureBox2.Size = new System.Drawing.Size(18, 24);
+            this.guna2PictureBox2.Size = new System.Drawing.Size(15, 22);
             this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2PictureBox2.TabIndex = 31;
             this.guna2PictureBox2.TabStop = false;
@@ -342,9 +365,9 @@
             this.lblTotalFees.AutoSize = true;
             this.lblTotalFees.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalFees.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalFees.Location = new System.Drawing.Point(604, 64);
+            this.lblTotalFees.Location = new System.Drawing.Point(518, 59);
             this.lblTotalFees.Name = "lblTotalFees";
-            this.lblTotalFees.Size = new System.Drawing.Size(27, 18);
+            this.lblTotalFees.Size = new System.Drawing.Size(25, 17);
             this.lblTotalFees.TabIndex = 9;
             this.lblTotalFees.Text = "NA";
             // 
@@ -354,9 +377,9 @@
             this.lblRetakeAppFees.AutoSize = true;
             this.lblRetakeAppFees.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRetakeAppFees.ForeColor = System.Drawing.Color.Black;
-            this.lblRetakeAppFees.Location = new System.Drawing.Point(311, 101);
+            this.lblRetakeAppFees.Location = new System.Drawing.Point(267, 94);
             this.lblRetakeAppFees.Name = "lblRetakeAppFees";
-            this.lblRetakeAppFees.Size = new System.Drawing.Size(27, 18);
+            this.lblRetakeAppFees.Size = new System.Drawing.Size(25, 17);
             this.lblRetakeAppFees.TabIndex = 9;
             this.lblRetakeAppFees.Text = "NA";
             // 
@@ -366,9 +389,9 @@
             this.lblRetakeAppID.AutoSize = true;
             this.lblRetakeAppID.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRetakeAppID.ForeColor = System.Drawing.Color.Black;
-            this.lblRetakeAppID.Location = new System.Drawing.Point(311, 65);
+            this.lblRetakeAppID.Location = new System.Drawing.Point(267, 60);
             this.lblRetakeAppID.Name = "lblRetakeAppID";
-            this.lblRetakeAppID.Size = new System.Drawing.Size(27, 18);
+            this.lblRetakeAppID.Size = new System.Drawing.Size(25, 17);
             this.lblRetakeAppID.TabIndex = 9;
             this.lblRetakeAppID.Text = "NA";
             // 
@@ -377,9 +400,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.DimGray;
-            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.Location = new System.Drawing.Point(14, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(212, 29);
+            this.label1.Size = new System.Drawing.Size(194, 27);
             this.label1.TabIndex = 2;
             this.label1.Text = "Retake Test Info";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -390,9 +413,9 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.DimGray;
-            this.label21.Location = new System.Drawing.Point(477, 64);
+            this.label21.Location = new System.Drawing.Point(409, 59);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(94, 18);
+            this.label21.Size = new System.Drawing.Size(87, 17);
             this.label21.TabIndex = 7;
             this.label21.Text = "Total Fees :";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -403,9 +426,9 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.DimGray;
-            this.label23.Location = new System.Drawing.Point(50, 101);
+            this.label23.Location = new System.Drawing.Point(43, 94);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(229, 18);
+            this.label23.Size = new System.Drawing.Size(210, 17);
             this.label23.TabIndex = 7;
             this.label23.Text = "Retake Test Application Fees:";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -416,9 +439,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(67, 65);
+            this.label3.Location = new System.Drawing.Point(57, 60);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(212, 18);
+            this.label3.Size = new System.Drawing.Size(196, 17);
             this.label3.TabIndex = 7;
             this.label3.Text = "Retake Test Application ID:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -440,10 +463,10 @@
             this.btnClose.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnClose.HoverState.Parent = this.btnClose;
             this.btnClose.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnClose.Location = new System.Drawing.Point(537, 531);
+            this.btnClose.Location = new System.Drawing.Point(460, 493);
             this.btnClose.Name = "btnClose";
             this.btnClose.ShadowDecoration.Parent = this.btnClose;
-            this.btnClose.Size = new System.Drawing.Size(119, 37);
+            this.btnClose.Size = new System.Drawing.Size(102, 34);
             this.btnClose.TabIndex = 14;
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -465,10 +488,10 @@
             this.btnSave.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnSave.HoverState.Parent = this.btnSave;
             this.btnSave.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnSave.Location = new System.Drawing.Point(662, 531);
+            this.btnSave.Location = new System.Drawing.Point(567, 493);
             this.btnSave.Name = "btnSave";
             this.btnSave.ShadowDecoration.Parent = this.btnSave;
-            this.btnSave.Size = new System.Drawing.Size(119, 37);
+            this.btnSave.Size = new System.Drawing.Size(102, 34);
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -478,40 +501,17 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Tahoma", 18.33962F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.DimGray;
-            this.lblTitle.Location = new System.Drawing.Point(163, 12);
+            this.lblTitle.Location = new System.Drawing.Point(140, 11);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(190, 33);
+            this.lblTitle.Size = new System.Drawing.Size(176, 30);
             this.lblTitle.TabIndex = 18;
             this.lblTitle.Text = "Appointment";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 10.18868F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.DimGray;
-            this.label4.Location = new System.Drawing.Point(469, 189);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 18);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Time:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // dtpTimePicker
-            // 
-            this.dtpTimePicker.CustomFormat = "hh:mm tt";
-            this.dtpTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTimePicker.Location = new System.Drawing.Point(525, 188);
-            this.dtpTimePicker.Name = "dtpTimePicker";
-            this.dtpTimePicker.ShowUpDown = true;
-            this.dtpTimePicker.Size = new System.Drawing.Size(97, 22);
-            this.dtpTimePicker.TabIndex = 28;
-            // 
             // ctrlScheduleTestAppointment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pnlBasicInfo);
@@ -519,7 +519,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Name = "ctrlScheduleTestAppointment";
-            this.Size = new System.Drawing.Size(791, 578);
+            this.Size = new System.Drawing.Size(678, 537);
             this.pnlBasicInfo.ResumeLayout(false);
             this.pnlBasicInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
@@ -529,7 +529,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

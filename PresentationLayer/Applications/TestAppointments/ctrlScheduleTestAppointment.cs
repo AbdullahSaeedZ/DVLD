@@ -16,6 +16,7 @@ namespace PresentationLayer.Applications.TestAppointments
         private enMode _FormMode;
         private int _testAppointmentID = -1;
         private int _LocalApplicationID = -1;
+        private bool _isRetakeAppointment = false;
         private clsLocalDrivingLicenseApplicationsBusiness _LocalApplication;
         private clsTestAppointmentsBusiness _TestAppointment ;
 
@@ -35,7 +36,8 @@ namespace PresentationLayer.Applications.TestAppointments
             InitializeComponent();
         }
 
-        public void LoadInfo(int LocalApplicationID, clsTestTypesBusiness.enTestType TestType, int TestAppointmentID = -1)
+        // if false then message will be shown and the form will be closed, if true then the form will be shown with respect to restrictions of validations
+        public bool LoadInfo(int LocalApplicationID, clsTestTypesBusiness.enTestType TestType, int TestAppointmentID = -1)
         {
             this.TestType = TestType;
             _testAppointmentID = TestAppointmentID;
@@ -46,7 +48,7 @@ namespace PresentationLayer.Applications.TestAppointments
             {
                 MessageBox.Show("Could not get Local Application Info of selected Appointment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnSave.Enabled = false;
-                return;
+                return false;
             }
 
             lblLocalApplicationID.Text = _LocalApplication.LocalDrivingLicenseApplicationID.ToString();
@@ -85,19 +87,21 @@ namespace PresentationLayer.Applications.TestAppointments
                 lblTitle.Text = "Edit " + _TestType.ToString() + " Test Appointment";
 
                 if (!_LoadTestAppointmentInfoForUpdate())
-                    return;
+                    return true;
             }
 
             lblTotalFees.Text = (Convert.ToSingle(lblTestFees.Text) + Convert.ToSingle(lblRetakeAppFees.Text)).ToString();
 
             if (!_HandleActiveAppointmentConstraint())
-                return;
+                return true;
 
             if (!_HandleLockedAppointmentConstraint())
-                return;
+                return true;
 
             if (!_HandlePreviousAppointmentConstraint())
-                return;
+                return true;
+            
+            return true;
         }
 
         private bool _LoadTestAppointmentInfoForUpdate()
@@ -215,37 +219,10 @@ namespace PresentationLayer.Applications.TestAppointments
             return true;
         }
 
-
-        private bool _HandleCreatingRetakeApplication()
-        {
-            if (_FormMode == enMode.eAddMode && _CreationMode == enCreationMode.eAddRetakeAppointmentMode)
-            {
-                clsApplicationsBusiness RetakeTestApplication = new clsApplicationsBusiness();
-
-                RetakeTestApplication.ApplicationTypeID = clsApplicationTypesBusiness.enApplicationTypes.eRetakeTest;
-                RetakeTestApplication.ApplicationStatus = clsApplicationsBusiness.enApplicationStatus.New;
-                RetakeTestApplication.ApplicantPersonID = _LocalApplication.ApplicantPersonID;
-                RetakeTestApplication.CreatedByUserID = clsGlobal.CurrentUser.UserID;
-                RetakeTestApplication.PaidFees = Convert.ToSingle(lblRetakeAppFees.Text);
-                
-                if (RetakeTestApplication.Save())
-                {
-                    _TestAppointment.RetakeTestApplicationID = RetakeTestApplication.ApplicationID;
-                    return true;
-                }
-                else
-                    return false;
-            }
-            return true;
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!_HandleCreatingRetakeApplication())
-            {
-                MessageBox.Show("Could not create a Retake application", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (_FormMode == enMode.eAddMode && _CreationMode == enCreationMode.eAddRetakeAppointmentMode)
+                _isRetakeAppointment = true;
 
             _TestAppointment.LocalDrivingLicenseApplicationID = _LocalApplication.LocalDrivingLicenseApplicationID;
             _TestAppointment.TestTypeID = _TestType;
@@ -262,7 +239,7 @@ namespace PresentationLayer.Applications.TestAppointments
 
             _TestAppointment.AppointmentDate = selectedAppointmentDate;
 
-            if (_TestAppointment.Save())
+            if (_TestAppointment.Save(_isRetakeAppointment))
             {
                 _FormMode = enMode.eUpdateMode;
                 MessageBox.Show("Data saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

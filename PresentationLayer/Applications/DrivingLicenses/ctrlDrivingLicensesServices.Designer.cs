@@ -21,13 +21,14 @@
         }
 
         #region Component Designer generated code
-
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrlDrivingLicensesServices));
             this.pnlRenewDrivingLicense = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.btnRenewDrivingLicense = new Guna.UI2.WinForms.Guna2Button();
             this.pnlRetakeTest = new Guna.UI2.WinForms.Guna2ShadowPanel();
@@ -67,9 +68,7 @@
             // 
             // btnRenewDrivingLicense
             // 
-            this.btnRenewDrivingLicense.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRenewDrivingLicense.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRenewDrivingLicense.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnRenewDrivingLicense.BorderRadius = 10;
             this.btnRenewDrivingLicense.BorderThickness = 1;
@@ -81,7 +80,7 @@
             this.btnRenewDrivingLicense.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnRenewDrivingLicense.HoverState.FillColor = System.Drawing.Color.White;
             this.btnRenewDrivingLicense.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnRenewDrivingLicense.HoverState.Image = global::PresentationLayer.Properties.Resources.UpdateFillBlack512;
+            this.btnRenewDrivingLicense.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("btnRenewDrivingLicense.HoverState.Image")));
             this.btnRenewDrivingLicense.HoverState.Parent = this.btnRenewDrivingLicense;
             this.btnRenewDrivingLicense.Image = global::PresentationLayer.Properties.Resources.UpdateNoFillGrey512;
             this.btnRenewDrivingLicense.ImageOffset = new System.Drawing.Point(49, -17);
@@ -113,9 +112,7 @@
             // 
             // btnRetakeTest
             // 
-            this.btnRetakeTest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRetakeTest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRetakeTest.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnRetakeTest.BorderRadius = 10;
             this.btnRetakeTest.BorderThickness = 1;
@@ -127,7 +124,7 @@
             this.btnRetakeTest.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnRetakeTest.HoverState.FillColor = System.Drawing.Color.White;
             this.btnRetakeTest.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnRetakeTest.HoverState.Image = global::PresentationLayer.Properties.Resources.DetainLicenseFillBlack512;
+            this.btnRetakeTest.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("btnRetakeTest.HoverState.Image")));
             this.btnRetakeTest.HoverState.Parent = this.btnRetakeTest;
             this.btnRetakeTest.Image = global::PresentationLayer.Properties.Resources.DetainLicenseNoFillGrey512;
             this.btnRetakeTest.ImageOffset = new System.Drawing.Point(30, -17);
@@ -159,9 +156,7 @@
             // 
             // btnLicenseReplacement
             // 
-            this.btnLicenseReplacement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLicenseReplacement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLicenseReplacement.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnLicenseReplacement.BorderRadius = 10;
             this.btnLicenseReplacement.BorderThickness = 1;
@@ -173,10 +168,10 @@
             this.btnLicenseReplacement.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnLicenseReplacement.HoverState.FillColor = System.Drawing.Color.White;
             this.btnLicenseReplacement.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnLicenseReplacement.HoverState.Image = global::PresentationLayer.Properties.Resources.replaceFillBlack512;
+            this.btnLicenseReplacement.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("btnLicenseReplacement.HoverState.Image")));
             this.btnLicenseReplacement.HoverState.Parent = this.btnLicenseReplacement;
             this.btnLicenseReplacement.Image = global::PresentationLayer.Properties.Resources.replaceNoFillGrey512;
-            this.btnLicenseReplacement.ImageOffset = new System.Drawing.Point(0, 18);
+            this.btnLicenseReplacement.ImageOffset = new System.Drawing.Point(67, -17);
             this.btnLicenseReplacement.ImageSize = new System.Drawing.Size(80, 80);
             this.btnLicenseReplacement.Location = new System.Drawing.Point(9, 7);
             this.btnLicenseReplacement.Name = "btnLicenseReplacement";
@@ -185,7 +180,7 @@
             this.btnLicenseReplacement.TabIndex = 2;
             this.btnLicenseReplacement.Tag = "License Replacement";
             this.btnLicenseReplacement.Text = "Damaged/Lost License Replacement";
-            this.btnLicenseReplacement.TextOffset = new System.Drawing.Point(0, 33);
+            this.btnLicenseReplacement.TextOffset = new System.Drawing.Point(-20, 65);
             this.btnLicenseReplacement.Click += new System.EventHandler(this.btnLicenseReplacement_Click);
             this.btnLicenseReplacement.MouseEnter += new System.EventHandler(this.buttons_MouseEnter);
             this.btnLicenseReplacement.MouseLeave += new System.EventHandler(this.buttons_MouseLeave);
@@ -205,9 +200,7 @@
             // 
             // btnReleaseDetainedLicense
             // 
-            this.btnReleaseDetainedLicense.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReleaseDetainedLicense.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReleaseDetainedLicense.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnReleaseDetainedLicense.BorderRadius = 10;
             this.btnReleaseDetainedLicense.BorderThickness = 1;
@@ -219,7 +212,7 @@
             this.btnReleaseDetainedLicense.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnReleaseDetainedLicense.HoverState.FillColor = System.Drawing.Color.White;
             this.btnReleaseDetainedLicense.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnReleaseDetainedLicense.HoverState.Image = global::PresentationLayer.Properties.Resources.releaseFillBlack512;
+            this.btnReleaseDetainedLicense.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("btnReleaseDetainedLicense.HoverState.Image")));
             this.btnReleaseDetainedLicense.HoverState.Parent = this.btnReleaseDetainedLicense;
             this.btnReleaseDetainedLicense.Image = global::PresentationLayer.Properties.Resources.releaseNoFillGrey512;
             this.btnReleaseDetainedLicense.ImageOffset = new System.Drawing.Point(53, -20);
@@ -251,9 +244,7 @@
             // 
             // btnNewLocalLicenseApplication
             // 
-            this.btnNewLocalLicenseApplication.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewLocalLicenseApplication.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNewLocalLicenseApplication.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnNewLocalLicenseApplication.BorderRadius = 10;
             this.btnNewLocalLicenseApplication.BorderThickness = 1;
@@ -265,7 +256,7 @@
             this.btnNewLocalLicenseApplication.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnNewLocalLicenseApplication.HoverState.FillColor = System.Drawing.Color.White;
             this.btnNewLocalLicenseApplication.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnNewLocalLicenseApplication.HoverState.Image = global::PresentationLayer.Properties.Resources.AddFillBlack512;
+            this.btnNewLocalLicenseApplication.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("btnNewLocalLicenseApplication.HoverState.Image")));
             this.btnNewLocalLicenseApplication.HoverState.Parent = this.btnNewLocalLicenseApplication;
             this.btnNewLocalLicenseApplication.Image = global::PresentationLayer.Properties.Resources.AddNoFillGrey512;
             this.btnNewLocalLicenseApplication.ImageOffset = new System.Drawing.Point(54, -20);
@@ -342,9 +333,7 @@
             // 
             // btnNewInternationalLicenseApplication
             // 
-            this.btnNewInternationalLicenseApplication.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewInternationalLicenseApplication.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNewInternationalLicenseApplication.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnNewInternationalLicenseApplication.BorderRadius = 10;
             this.btnNewInternationalLicenseApplication.BorderThickness = 1;
@@ -356,7 +345,7 @@
             this.btnNewInternationalLicenseApplication.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnNewInternationalLicenseApplication.HoverState.FillColor = System.Drawing.Color.White;
             this.btnNewInternationalLicenseApplication.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnNewInternationalLicenseApplication.HoverState.Image = global::PresentationLayer.Properties.Resources.AddFillBlack512;
+            this.btnNewInternationalLicenseApplication.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("btnNewInternationalLicenseApplication.HoverState.Image")));
             this.btnNewInternationalLicenseApplication.HoverState.Parent = this.btnNewInternationalLicenseApplication;
             this.btnNewInternationalLicenseApplication.Image = global::PresentationLayer.Properties.Resources.AddNoFillGrey512;
             this.btnNewInternationalLicenseApplication.ImageOffset = new System.Drawing.Point(69, -20);
@@ -375,8 +364,7 @@
             // 
             // ctrlDrivingLicensesServices
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.pnlMainServicesContainer);
             this.Name = "ctrlDrivingLicensesServices";
@@ -390,7 +378,6 @@
             this.pnlMainServicesContainer.ResumeLayout(false);
             this.pnlNewInternationalLicense.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion

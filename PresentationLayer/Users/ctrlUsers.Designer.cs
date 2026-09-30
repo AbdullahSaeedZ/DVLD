@@ -21,21 +21,22 @@
         }
 
         #region Component Designer generated code
-
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrlUsers));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnAddPerson = new Guna.UI2.WinForms.Guna2Button();
+            this.btnAddUser = new Guna.UI2.WinForms.Guna2Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbSearchUsers = new Guna.UI2.WinForms.Guna2TextBox();
@@ -43,6 +44,11 @@
             this.cbIsActive = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbSearchBy = new Guna.UI2.WinForms.Guna2ComboBox();
             this.dgvUsers = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -50,11 +56,6 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
@@ -67,9 +68,9 @@
             this.guna2Panel1.BorderRadius = 20;
             this.guna2Panel1.Controls.Add(this.guna2Panel2);
             this.guna2Panel1.Controls.Add(this.dgvUsers);
-            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(41, 21, 41, 21);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.ShadowDecoration.Parent = this.guna2Panel1;
             this.guna2Panel1.Size = new System.Drawing.Size(1441, 894);
@@ -81,7 +82,7 @@
             this.guna2Panel2.BorderColor = System.Drawing.Color.Gainsboro;
             this.guna2Panel2.BorderRadius = 15;
             this.guna2Panel2.BorderThickness = 1;
-            this.guna2Panel2.Controls.Add(this.btnAddPerson);
+            this.guna2Panel2.Controls.Add(this.btnAddUser);
             this.guna2Panel2.Controls.Add(this.label2);
             this.guna2Panel2.Controls.Add(this.label3);
             this.guna2Panel2.Controls.Add(this.tbSearchUsers);
@@ -90,37 +91,39 @@
             this.guna2Panel2.Controls.Add(this.cbSearchBy);
             this.guna2Panel2.FillColor = System.Drawing.Color.White;
             this.guna2Panel2.Location = new System.Drawing.Point(18, 27);
+            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(41, 21, 41, 21);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.ShadowDecoration.Parent = this.guna2Panel2;
             this.guna2Panel2.Size = new System.Drawing.Size(1405, 57);
             this.guna2Panel2.TabIndex = 8;
             // 
-            // btnAddPerson
+            // btnAddUser
             // 
-            this.btnAddPerson.BackColor = System.Drawing.Color.Transparent;
-            this.btnAddPerson.BorderColor = System.Drawing.Color.DimGray;
-            this.btnAddPerson.BorderRadius = 10;
-            this.btnAddPerson.CheckedState.Parent = this.btnAddPerson;
-            this.btnAddPerson.CustomImages.Parent = this.btnAddPerson;
-            this.btnAddPerson.FillColor = System.Drawing.Color.Transparent;
-            this.btnAddPerson.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.btnAddPerson.ForeColor = System.Drawing.Color.Black;
-            this.btnAddPerson.HoverState.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAddPerson.HoverState.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAddPerson.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnAddPerson.HoverState.Image = global::PresentationLayer.Properties.Resources.addFill;
-            this.btnAddPerson.HoverState.Parent = this.btnAddPerson;
-            this.btnAddPerson.Image = global::PresentationLayer.Properties.Resources.addNoFill;
-            this.btnAddPerson.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAddPerson.Location = new System.Drawing.Point(1253, 9);
-            this.btnAddPerson.Name = "btnAddPerson";
-            this.btnAddPerson.PressedColor = System.Drawing.Color.DimGray;
-            this.btnAddPerson.ShadowDecoration.Parent = this.btnAddPerson;
-            this.btnAddPerson.Size = new System.Drawing.Size(137, 37);
-            this.btnAddPerson.TabIndex = 7;
-            this.btnAddPerson.Text = "Add User";
-            this.btnAddPerson.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAddPerson.Click += new System.EventHandler(this.btnAddUser_Click);
+            this.btnAddUser.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddUser.BorderColor = System.Drawing.Color.DimGray;
+            this.btnAddUser.BorderRadius = 10;
+            this.btnAddUser.CheckedState.Parent = this.btnAddUser;
+            this.btnAddUser.CustomImages.Parent = this.btnAddUser;
+            this.btnAddUser.FillColor = System.Drawing.Color.Transparent;
+            this.btnAddUser.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.btnAddUser.ForeColor = System.Drawing.Color.Black;
+            this.btnAddUser.HoverState.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAddUser.HoverState.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAddUser.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnAddUser.HoverState.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUser.HoverState.Image")));
+            this.btnAddUser.HoverState.Parent = this.btnAddUser;
+            this.btnAddUser.Image = global::PresentationLayer.Properties.Resources.addNoFill;
+            this.btnAddUser.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAddUser.Location = new System.Drawing.Point(1262, 9);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(41, 21, 41, 21);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.PressedColor = System.Drawing.Color.DimGray;
+            this.btnAddUser.ShadowDecoration.Parent = this.btnAddUser;
+            this.btnAddUser.Size = new System.Drawing.Size(121, 37);
+            this.btnAddUser.TabIndex = 7;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // label2
             // 
@@ -128,8 +131,9 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 12.22642F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(29, 17);
+            this.label2.Margin = new System.Windows.Forms.Padding(41, 0, 41, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 23);
+            this.label2.Size = new System.Drawing.Size(119, 21);
             this.label2.TabIndex = 1;
             this.label2.Text = "Total Records:";
             // 
@@ -138,9 +142,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12.22642F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(329, 17);
+            this.label3.Location = new System.Drawing.Point(4512, 117);
+            this.label3.Margin = new System.Windows.Forms.Padding(41, 0, 41, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 23);
+            this.label3.Size = new System.Drawing.Size(89, 21);
             this.label3.TabIndex = 1;
             this.label3.Text = "Search By:";
             // 
@@ -162,8 +167,8 @@
             this.tbSearchUsers.ForeColor = System.Drawing.Color.Black;
             this.tbSearchUsers.HoverState.BorderColor = System.Drawing.Color.DimGray;
             this.tbSearchUsers.HoverState.Parent = this.tbSearchUsers;
-            this.tbSearchUsers.Location = new System.Drawing.Point(679, 10);
-            this.tbSearchUsers.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tbSearchUsers.Location = new System.Drawing.Point(704, 9);
+            this.tbSearchUsers.Margin = new System.Windows.Forms.Padding(55, 21, 55, 21);
             this.tbSearchUsers.Name = "tbSearchUsers";
             this.tbSearchUsers.PasswordChar = '\0';
             this.tbSearchUsers.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -181,9 +186,10 @@
             this.lblNumberOfRecords.AutoSize = true;
             this.lblNumberOfRecords.Font = new System.Drawing.Font("Tahoma", 12.22642F, System.Drawing.FontStyle.Bold);
             this.lblNumberOfRecords.ForeColor = System.Drawing.Color.Black;
-            this.lblNumberOfRecords.Location = new System.Drawing.Point(190, 17);
+            this.lblNumberOfRecords.Location = new System.Drawing.Point(189, 17);
+            this.lblNumberOfRecords.Margin = new System.Windows.Forms.Padding(41, 0, 41, 0);
             this.lblNumberOfRecords.Name = "lblNumberOfRecords";
-            this.lblNumberOfRecords.Size = new System.Drawing.Size(22, 23);
+            this.lblNumberOfRecords.Size = new System.Drawing.Size(21, 21);
             this.lblNumberOfRecords.TabIndex = 0;
             this.lblNumberOfRecords.Text = "0";
             // 
@@ -206,10 +212,11 @@
             "Yes",
             "No"});
             this.cbIsActive.ItemsAppearance.Parent = this.cbIsActive;
-            this.cbIsActive.Location = new System.Drawing.Point(687, 9);
+            this.cbIsActive.Location = new System.Drawing.Point(704, 9);
+            this.cbIsActive.Margin = new System.Windows.Forms.Padding(41, 21, 41, 21);
             this.cbIsActive.Name = "cbIsActive";
             this.cbIsActive.ShadowDecoration.Parent = this.cbIsActive;
-            this.cbIsActive.Size = new System.Drawing.Size(101, 36);
+            this.cbIsActive.Size = new System.Drawing.Size(138, 36);
             this.cbIsActive.StartIndex = 0;
             this.cbIsActive.TabIndex = 2;
             this.cbIsActive.Visible = false;
@@ -237,7 +244,8 @@
             "Full Name",
             "IsActive"});
             this.cbSearchBy.ItemsAppearance.Parent = this.cbSearchBy;
-            this.cbSearchBy.Location = new System.Drawing.Point(447, 10);
+            this.cbSearchBy.Location = new System.Drawing.Point(461, 9);
+            this.cbSearchBy.Margin = new System.Windows.Forms.Padding(41, 21, 41, 21);
             this.cbSearchBy.Name = "cbSearchBy";
             this.cbSearchBy.ShadowDecoration.Parent = this.cbSearchBy;
             this.cbSearchBy.Size = new System.Drawing.Size(225, 36);
@@ -289,7 +297,8 @@
             this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvUsers.EnableHeadersVisualStyles = false;
             this.dgvUsers.GridColor = System.Drawing.Color.Gainsboro;
-            this.dgvUsers.Location = new System.Drawing.Point(18, 109);
+            this.dgvUsers.Location = new System.Drawing.Point(18, 108);
+            this.dgvUsers.Margin = new System.Windows.Forms.Padding(41, 21, 41, 21);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -305,7 +314,7 @@
             this.dgvUsers.RowTemplate.DividerHeight = 1;
             this.dgvUsers.RowTemplate.Height = 30;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsers.Size = new System.Drawing.Size(1405, 759);
+            this.dgvUsers.Size = new System.Drawing.Size(1405, 742);
             this.dgvUsers.TabIndex = 0;
             this.dgvUsers.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvUsers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -330,68 +339,6 @@
             this.dgvUsers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.DimGray;
             this.dgvUsers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.White;
             this.dgvUsers.DoubleClick += new System.EventHandler(this.dgvUsers_DoubleClick);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showDetailsToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.addNewUserToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.deleteToolStripMenuItem,
-            this.changePasswordToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 160);
-            // 
-            // showDetailsToolStripMenuItem
-            // 
-            this.showDetailsToolStripMenuItem.Image = global::PresentationLayer.Properties.Resources.personCardNoFill24;
-            this.showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
-            this.showDetailsToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
-            this.showDetailsToolStripMenuItem.Text = "Show Details";
-            this.showDetailsToolStripMenuItem.ToolTipText = "Show User Details";
-            this.showDetailsToolStripMenuItem.Click += new System.EventHandler(this.showDetailsToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(185, 6);
-            // 
-            // addNewUserToolStripMenuItem
-            // 
-            this.addNewUserToolStripMenuItem.Image = global::PresentationLayer.Properties.Resources.addNoFill;
-            this.addNewUserToolStripMenuItem.Name = "addNewUserToolStripMenuItem";
-            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
-            this.addNewUserToolStripMenuItem.Text = "Add New User";
-            this.addNewUserToolStripMenuItem.ToolTipText = "Add New User";
-            this.addNewUserToolStripMenuItem.Click += new System.EventHandler(this.btnAddUser_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Image = global::PresentationLayer.Properties.Resources.editNoFill;
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.ToolTipText = "Edit User Info";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = global::PresentationLayer.Properties.Resources.removeNoFill;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.ToolTipText = "Delete Selected User";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // changePasswordToolStripMenuItem
-            // 
-            this.changePasswordToolStripMenuItem.Image = global::PresentationLayer.Properties.Resources.passwordNoFill;
-            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
-            this.changePasswordToolStripMenuItem.Text = "Change Password";
-            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // UserID
             // 
@@ -443,12 +390,74 @@
             this.IsActive.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.IsActive.Width = 200;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showDetailsToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.addNewUserToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem,
+            this.changePasswordToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(177, 160);
+            // 
+            // showDetailsToolStripMenuItem
+            // 
+            this.showDetailsToolStripMenuItem.Image = global::PresentationLayer.Properties.Resources.personCardNoFill24;
+            this.showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
+            this.showDetailsToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.showDetailsToolStripMenuItem.Text = "Show Details";
+            this.showDetailsToolStripMenuItem.ToolTipText = "Show User Details";
+            this.showDetailsToolStripMenuItem.Click += new System.EventHandler(this.showDetailsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
+            // 
+            // addNewUserToolStripMenuItem
+            // 
+            this.addNewUserToolStripMenuItem.Image = global::PresentationLayer.Properties.Resources.addNoFill;
+            this.addNewUserToolStripMenuItem.Name = "addNewUserToolStripMenuItem";
+            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.addNewUserToolStripMenuItem.Text = "Add New User";
+            this.addNewUserToolStripMenuItem.ToolTipText = "Add New User";
+            this.addNewUserToolStripMenuItem.Click += new System.EventHandler(this.btnAddUser_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::PresentationLayer.Properties.Resources.editNoFill;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.ToolTipText = "Edit User Info";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::PresentationLayer.Properties.Resources.removeNoFill;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.ToolTipText = "Delete Selected User";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Image = global::PresentationLayer.Properties.Resources.passwordNoFill;
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
+            // 
             // ctrlUsers
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.guna2Panel1);
+            this.Margin = new System.Windows.Forms.Padding(41, 21, 41, 21);
             this.Name = "ctrlUsers";
             this.Size = new System.Drawing.Size(1441, 894);
             this.Load += new System.EventHandler(this.ctrlUsers_Load);
@@ -465,7 +474,7 @@
 
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private Guna.UI2.WinForms.Guna2Button btnAddPerson;
+        private Guna.UI2.WinForms.Guna2Button btnAddUser;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2TextBox tbSearchUsers;

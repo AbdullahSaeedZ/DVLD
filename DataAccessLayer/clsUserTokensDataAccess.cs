@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 
 namespace DataAccessLayer
@@ -15,10 +17,10 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from UserTokens where UserID = @ID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindTokenByUserID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", UserID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@UserID", UserID);
                         connection.Open();
 
                         SqlDataReader reader = command.ExecuteReader();
@@ -34,10 +36,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -49,12 +51,11 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from UserTokens where TokenID = @ID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindTokenByTokenID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", TokenID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@TokenID", TokenID);
                         connection.Open();
-
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -68,10 +69,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -84,12 +85,11 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from UserTokens where TokenValue = @Value and (getdate() < ExpirationDate);";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindTokenByTokenValue", connection))
                     {
-                        command.Parameters.AddWithValue("@Value", TokenValue);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@TokenValue", TokenValue);
                         connection.Open();
-
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -103,10 +103,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -115,33 +115,36 @@ namespace DataAccessLayer
         public static int AddNewToken(int UserID, string TokenValue, DateTime CreatedDate, DateTime ExpirationDate)
         {
             int NewID = -1;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"insert into UserTokens 
-                                     values (@UserID, @TokenValue, @CreatedDate, @ExpirationDate);
-                                     select scope_identity();";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_AddNewToken", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@UserID", UserID);
                         command.Parameters.AddWithValue("@TokenValue", TokenValue);
                         command.Parameters.AddWithValue("@CreatedDate", CreatedDate);
                         command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
-
+                        
+                        SqlParameter newTokenIDParam = new SqlParameter("@NewTokenID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(newTokenIDParam);
+                        
                         connection.Open();
-                        object result = command.ExecuteScalar();
+                        command.ExecuteNonQuery();
 
-                        if (result != null && int.TryParse(result.ToString(), out int ID))
-                            NewID = ID;
+                        if (newTokenIDParam.Value is int id)
+                            NewID = id;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return NewID;
         }
@@ -154,22 +157,20 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"update UserTokens 
-                                     set ExpirationDate = getdate()
-                                     where TokenValue = @TokenValue;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_SetTokenExpired", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@TokenValue", TokenValue);
-
+                        
                         connection.Open();
                         rowsAffected = command.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return (rowsAffected > 0);
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace DataAccessLayer
 {
@@ -14,12 +15,10 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select * from LicenseClasses
-                                 where LicenseClassID = @ID;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetLicenseClassInfoByID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", LicenseClassID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
 
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
@@ -36,10 +35,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -52,12 +51,10 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select * from LicenseClasses
-                                 where ClassName = @Name;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetLicenseClassInfoByClassName", connection))
                     {
-                        command.Parameters.AddWithValue("@Name", ClassName);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ClassName", ClassName);
 
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
@@ -74,10 +71,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -85,18 +82,14 @@ namespace DataAccessLayer
         public static bool UpdateLicenseClass(byte LicenseClassID, string ClassName, string ClassDescription, byte MinimumAllowedAge, byte DefaultValidityLength, float ClassFees)
         {
             int rowsAffected = 0;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"update LicenseClasses
-                                     set ClassName = @ClassName, ClassDescription = @ClassDescription, MinimumAllowedAge = @MinimumAllowedAge, DefaultValidityLength = @DefaultValidityLength, ClassFees = @ClassFees                                  
-                                     where LicenseClassID = @ID;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_UpdateLicenseClass", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", LicenseClassID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
                         command.Parameters.AddWithValue("@ClassName", ClassName);
                         command.Parameters.AddWithValue("@ClassDescription", ClassDescription);
                         command.Parameters.AddWithValue("@MinimumAllowedAge", MinimumAllowedAge);
@@ -108,10 +101,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return (rowsAffected > 0);
         }
@@ -119,15 +112,13 @@ namespace DataAccessLayer
         public static DataTable GetAllLicenseClasses()
         {
             DataTable dt = new DataTable();
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from LicenseClasses;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllLicenseClasses", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
                         if (reader.HasRows)
@@ -137,10 +128,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }

@@ -98,16 +98,16 @@ namespace BusinessLayer
        
         
 
-        private bool _AddNewLocalDrivingLicenseApplication()
+        private bool _AddNewLocalDrivingLicenseApplication(clsDataTransaction transaction)
         {
-            this.LocalDrivingLicenseApplicationID = clsLocalDrivingLicenseApplicationsDataAccess.AddLocalLicenseApplication((byte)this.LicenseClassID, this.ApplicationID);
+            this.LocalDrivingLicenseApplicationID = clsLocalDrivingLicenseApplicationsDataAccess.AddLocalLicenseApplication((byte)this.LicenseClassID, this.ApplicationID, transaction);
 
             return (this.LocalDrivingLicenseApplicationID != -1);
         }
 
-        private bool _UpdateLocalDrivingLicenseApplication()
+        private bool _UpdateLocalDrivingLicenseApplication(clsDataTransaction transaction)
         {
-            return clsLocalDrivingLicenseApplicationsDataAccess.UpdateLocalLicenseApplication(this.LocalDrivingLicenseApplicationID, (byte)this.LicenseClassID);
+            return clsLocalDrivingLicenseApplicationsDataAccess.UpdateLocalLicenseApplication(this.LocalDrivingLicenseApplicationID, (byte)this.LicenseClassID, transaction);
         }
 
         public bool DeleteApplication(clsUserBusiness CurrentUser)
@@ -115,15 +115,12 @@ namespace BusinessLayer
             if (!CurrentUser.HasPermission(clsBusinessSettings.enPermissions.eDeleteApplications))
                 throw new UnauthorizedAccessException("You do not have permission to delete applications");
 
-
             if (this.ApplicationStatus != enApplicationStatus.New)
-                return false;
+                throw new InvalidOperationException("Cannot delete local driving license application of NEW status");
 
-            // if no records of other tables linked to this local application, then we delete it then delete baseApplication
-            if (clsLocalDrivingLicenseApplicationsDataAccess.DeleteLocalDrivingLicenseApplication(this.LocalDrivingLicenseApplicationID))
-                return base.DeleteApplication();
-            else
-                return false;
+            // will run a transaction to delete the derived application first then the base application, if any of them fail, will rollback the transaction
+            return clsLocalDrivingLicenseApplicationsDataAccess.DeleteLocalDrivingLicenseApplication(
+                this.LocalDrivingLicenseApplicationID);
         }
 
         public static DataTable GetAllLocalDrivingLicenseApplications()
@@ -133,35 +130,52 @@ namespace BusinessLayer
 
         public bool Save(clsUserBusiness CurrentUser)
         {
-            if (base.Save()) // adding or updating the baseApplication first then do the derived application
+            if ( _mode == enMode.eAddMode && !CurrentUser.HasPermission(clsBusinessSettings.enPermissions.eAddApplications)) 
+                throw new UnauthorizedAccessException("You do not have permission to add applications");
+            
+            if (_mode == enMode.eUpdateMode && !CurrentUser.HasPermission(clsBusinessSettings.enPermissions.eUpdateApplications))
+                throw new UnauthorizedAccessException("You do not have permission to update applications");
+            
+            bool success = false;
+            using (clsDataTransaction transaction = new clsDataTransaction())
             {
-                switch (this._mode)
+                try
                 {
-                    case enMode.eAddMode:
-
-                        if (!CurrentUser.HasPermission(clsBusinessSettings.enPermissions.eAddApplications))
-                            throw new UnauthorizedAccessException("You do not have permission to add applications");
-
-                        if (_AddNewLocalDrivingLicenseApplication())
+                    transaction.BeginTransaction();
+                    if (base.Save(transaction)) // adding or updating the baseApplication first then do the derived application
+                    {
+                        switch (this._mode)
                         {
-                            this._mode = enMode.eUpdateMode;
-                            return true;
+                            case enMode.eAddMode:
+                            {
+                                if (_AddNewLocalDrivingLicenseApplication(transaction))
+                                {
+                                    this._mode = enMode.eUpdateMode;
+                                    success = true;
+                                }
+                                break;
+                            }
+                            case enMode.eUpdateMode:
+                            {
+                                success = _UpdateLocalDrivingLicenseApplication(transaction);
+                                break;
+                            }
                         }
-                        else
-                            return false;
-
-                    case enMode.eUpdateMode:
-
-                        if (!CurrentUser.HasPermission(clsBusinessSettings.enPermissions.eUpdateApplications))
-                            throw new UnauthorizedAccessException("You do not have permission to update applications");
-
-                        return _UpdateLocalDrivingLicenseApplication();
-
-                    default: return false;
+                    }
+                    
+                    if (success)
+                        transaction.CommitTransaction();
+                    else
+                        transaction.RollbackTransaction();
                 }
+                catch (Exception e)
+                {
+                    success = false;
+                    transaction.RollbackTransaction();
+                }
+                return success;
             }
-            else
-                return false;
+           
         }
 
         public static int GetActiveLocalApplicationID(int ApplicantPersonID, clsLicenseClassesBusiness.enLicenseClass LicenseClassID)
@@ -179,27 +193,10 @@ namespace BusinessLayer
 
             // we check if person is listed as driver, cuz person can be listed as driver only once in the system
             // if person is already a driver, then use his driver id in the new license (licenses of different class for one driver)
-
-            int DriverID = -1;
-            clsDriversBusiness Driver = clsDriversBusiness.FindByPersonID(this.ApplicantPersonID);
-
-            if (Driver == null)
-            {
-                // adding driver record first, cuz new license record requires a driver id
-                Driver = new clsDriversBusiness();
-                Driver.PersonID = this.ApplicantPersonID;
-                Driver.CreatedByUserID = CreatedByUser.UserID; 
-
-                if (!Driver.Save())
-                    return -1;
-            }
-            
-            DriverID = Driver.DriverID;
+            // done in stored procedure
 
             clsLicensesBusiness NewLicense = new clsLicensesBusiness();
-
             NewLicense.ApplicationID = this.ApplicationID;
-            NewLicense.DriverID = DriverID;
             NewLicense.Notes = Notes;
             NewLicense.CreatedByUserID = CreatedByUser.UserID;
             NewLicense.IssueReason = clsLicensesBusiness.enIssueReason.FirstTime;
@@ -207,7 +204,7 @@ namespace BusinessLayer
             NewLicense.LicenseClassID = this.LicenseClassID;
             NewLicense.PaidFees = this.LicenseClassInfo.ClassFees; // this is not local driving application fees, it is the license class fee
 
-            if (NewLicense.Save()) // DAL will auto set application status as complete
+            if (NewLicense.Save()) // DB will set application status as complete
             {
                 this.ApplicationStatus = enApplicationStatus.Completed; // this only for the object
                 return NewLicense.LicenseID;

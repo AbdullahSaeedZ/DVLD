@@ -8,7 +8,7 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
 {
     public partial class frmIssueLicenseReplacement : Form
     {
-        private clsLicensesBusiness _ReplacementLicense;
+        private int _ReplacementLicenseID = -1;
         private clsLicensesBusiness.enIssueReason _IssueReason = clsLicensesBusiness.enIssueReason.ReplacementForDamaged;
 
 
@@ -26,7 +26,6 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
         private void frmIssueLicenseReplacement_Activated(object sender, EventArgs e)
         {
             ctrlLocalDrivingLicenseInfoWithFilter1.FilterFocus();
-
         }
 
         private void _FillApplicationDefaultInfo()
@@ -100,7 +99,7 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
 
             try
             {
-                _ReplacementLicense = ctrlLocalDrivingLicenseInfoWithFilter1.SelectedLicenseInfo.ReplaceLicense(_IssueReason, clsGlobal.CurrentUser);
+                _ReplacementLicenseID = ctrlLocalDrivingLicenseInfoWithFilter1.SelectedLicenseInfo.ReplaceLicense(_IssueReason, clsGlobal.CurrentUser);
             }
             catch (Exception ex)
             {
@@ -108,15 +107,16 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
                 this.Close();
             }
 
-            if (_ReplacementLicense != null)
+            if (_ReplacementLicenseID != -1)
             {
-                lblReplacementLicenseID.Text = _ReplacementLicense.LicenseID.ToString();
+                lblReplacementLicenseID.Text = _ReplacementLicenseID.ToString();
+                lblReplacementApplicationID.Text = clsLicensesBusiness.FindByLicenseID(_ReplacementLicenseID).ApplicationID.ToString();
                 btnShowNewLicenseInfo.Enabled = true;
                 btnReplaceLicense.Enabled = false;
                 ctrlLocalDrivingLicenseInfoWithFilter1.FilterEnabled = false;
                 rbDamagedType.Enabled = false;
                 rbLostType.Enabled = false;
-                MessageBox.Show($"License is replaced successfully with new ID {_ReplacementLicense.LicenseID}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"License is replaced successfully with new ID {_ReplacementLicenseID}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
                 MessageBox.Show($"Failed to replace the license", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -125,7 +125,7 @@ namespace PresentationLayer.Applications.DrivingLicenses.Forms
 
         private void btnShowNewLicenseInfo_Click(object sender, EventArgs e)
         {
-            frmShowLocalLicenseInfo licensesInfo = new frmShowLocalLicenseInfo(_ReplacementLicense.LicenseID);
+            frmShowLocalLicenseInfo licensesInfo = new frmShowLocalLicenseInfo(_ReplacementLicenseID);
             clsUtilities.AddToBreadcrumb("> License Info");
             licensesInfo.ShowDialog();
             clsUtilities.RemoveFromBreadcrumb("> License Info");

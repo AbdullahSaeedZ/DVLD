@@ -12,7 +12,7 @@ namespace PresentationLayer.Applications.TestAppointments.Forms
         private int _testAppointmentID = -1;
         private int _LocalApplicationID = -1;
 
-        // default appointment parameter will tell the control if there is an existing appointment or nor
+        // default appointment parameter will tell the control if there is an existing appointment or not
         public frmScheduleTestAppointment(int LocalApplicationID, clsTestTypesBusiness.enTestType SelectedTestType, int TestAppointmentID = -1)
         {
             InitializeComponent();
@@ -24,7 +24,11 @@ namespace PresentationLayer.Applications.TestAppointments.Forms
         private void frmScheduleTestAppointment_Load(object sender, EventArgs e)
         {
             ctrlScheduleTestAppointment1.delUpdateAppointmentsDGV += this.delUpdateAppointmentsDGV;
-            ctrlScheduleTestAppointment1.LoadInfo(_LocalApplicationID, _SelectedTestType, _testAppointmentID);
+            
+            if (!ctrlScheduleTestAppointment1.LoadInfo(_LocalApplicationID, _SelectedTestType, _testAppointmentID))
+            {
+                this.Close();
+            }
         }
 
         private void ctrlScheduleTestAppointment1_OnCloseButtonClicked()

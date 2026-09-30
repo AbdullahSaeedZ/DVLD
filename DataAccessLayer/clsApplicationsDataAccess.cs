@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace DataAccessLayer
 {
@@ -10,17 +11,14 @@ namespace DataAccessLayer
                                                 ref DateTime lastStatusDate, ref float paidFees, ref int createdByUserID)
         {
             bool isFound = false;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select * from Applications
-                                 where ApplicationID = @ID;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindApplicationByID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", ApplicationID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
 
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
@@ -39,86 +37,77 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
 
         public static int AddNewApplication(int applicantPersonID, DateTime applicationDate, int applicationTypeID, byte applicationStatus,
-                                                 DateTime lastStatusDate, float paidFees, int createdByUserID)
+                                                 DateTime lastStatusDate, float paidFees, int createdByUserID, clsDataTransaction transaction)
         {
             int newID = -1;
-
             try
             {
-                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
+                using (SqlCommand command = new SqlCommand("usp_AddNewApplication", transaction.Connection, transaction.Transaction))
                 {
-                    string query = @"insert into Applications
-                                     values ( @ApplicantPersonID, @ApplicationDate, @ApplicationTypeID, @ApplicationStatus, @LastStatusDate, @PaidFees, @CreatedByUserID);
-                                     select scope_identity();";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ApplicantPersonID", applicantPersonID);
+                    command.Parameters.AddWithValue("@ApplicationDate", applicationDate);
+                    command.Parameters.AddWithValue("@ApplicationTypeID", applicationTypeID);
+                    command.Parameters.AddWithValue("@ApplicationStatus", applicationStatus);
+                    command.Parameters.AddWithValue("@LastStatusDate", lastStatusDate);
+                    command.Parameters.AddWithValue("@PaidFees", paidFees);
+                    command.Parameters.AddWithValue("@CreatedByUserID", createdByUserID);
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    SqlParameter newIDParameter = new SqlParameter("@NewApplicationID", SqlDbType.Int)
                     {
-                        command.Parameters.AddWithValue("@ApplicantPersonID", applicantPersonID);
-                        command.Parameters.AddWithValue("@ApplicationDate", applicationDate);
-                        command.Parameters.AddWithValue("@ApplicationTypeID", applicationTypeID);
-                        command.Parameters.AddWithValue("@ApplicationStatus", applicationStatus);
-                        command.Parameters.AddWithValue("@LastStatusDate", lastStatusDate);
-                        command.Parameters.AddWithValue("@PaidFees", paidFees);
-                        command.Parameters.AddWithValue("@CreatedByUserID", createdByUserID);
+                        Direction = ParameterDirection.Output
+                    };
+                    
+                    command.Parameters.Add(newIDParameter);
+                    command.ExecuteNonQuery();
 
-                        connection.Open();
-                        object result = command.ExecuteScalar();
-
-                        if (result != null && int.TryParse(result.ToString(), out int id))
-                            newID = id;
-                    }
+                    if (newIDParameter.Value is int id)
+                        newID = id;
                 }
+                
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
                 throw;
             }
             return newID;
         }
 
         public static bool UpdateApplication(int ApplicationID , int applicantPersonID, DateTime applicationDate, int applicationTypeID, byte applicationStatus,
-                                                 DateTime lastStatusDate, float paidFees, int createdByUserID)
+                                                 DateTime lastStatusDate, float paidFees, int createdByUserID , clsDataTransaction transaction)
         {
             int rowsAffected = 0;
-
             try
             {
-                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
-                {
-                    string query = @"update Applications
-                                     set ApplicantPersonID = @ApplicantPersonID, ApplicationDate = @ApplicationDate, ApplicationTypeID = @ApplicationTypeID, ApplicationStatus = @ApplicationStatus,
-                                     LastStatusDate = @LastStatusDate, PaidFees = @PaidFees, CreatedByUserID = @CreatedByUserID
-                                     where ApplicationID = @ID;";
+               using (SqlCommand command = new SqlCommand("usp_UpdateApplication", transaction.Connection, transaction.Transaction))
+               {
+                   command.CommandType = CommandType.StoredProcedure;
+                   command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+                   command.Parameters.AddWithValue("@ApplicantPersonID", applicantPersonID);
+                   command.Parameters.AddWithValue("@ApplicationDate", applicationDate);
+                   command.Parameters.AddWithValue("@ApplicationTypeID", applicationTypeID);
+                   command.Parameters.AddWithValue("@ApplicationStatus", applicationStatus);
+                   command.Parameters.AddWithValue("@LastStatusDate", lastStatusDate);
+                   command.Parameters.AddWithValue("@PaidFees", paidFees);
+                   command.Parameters.AddWithValue("@CreatedByUserID", createdByUserID);
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@ID", ApplicationID);
-                        command.Parameters.AddWithValue("@ApplicantPersonID", applicantPersonID);
-                        command.Parameters.AddWithValue("@ApplicationDate", applicationDate);
-                        command.Parameters.AddWithValue("@ApplicationTypeID", applicationTypeID);
-                        command.Parameters.AddWithValue("@ApplicationStatus", applicationStatus);
-                        command.Parameters.AddWithValue("@LastStatusDate", lastStatusDate);
-                        command.Parameters.AddWithValue("@PaidFees", paidFees);
-                        command.Parameters.AddWithValue("@CreatedByUserID", createdByUserID);
-
-                        connection.Open();
-                        rowsAffected = command.ExecuteNonQuery();
-                    }
-                }
+                   rowsAffected = command.ExecuteNonQuery();
+               }
+               
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
                 throw;
             }
             return (rowsAffected > 0);
@@ -127,25 +116,23 @@ namespace DataAccessLayer
         public static bool DeleteBaseApplication(int ApplicationID)
         {
             int rowsAffected = 0;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "delete Applications where ApplicationID = @ID;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_DeleteBaseApplication", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", ApplicationID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
 
                         connection.Open();
                         rowsAffected = command.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex) 
             {
-                // logs
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
                 return false;
             }
             return (rowsAffected > 0);
@@ -154,15 +141,13 @@ namespace DataAccessLayer
         public static DataTable GetAllApplications()
         {
             DataTable dt = new DataTable();
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from Applications;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllApplications", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
                         if (reader.HasRows)
@@ -172,10 +157,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }
@@ -184,18 +169,14 @@ namespace DataAccessLayer
         public static bool UpdateStatus(int ApplicationID, byte NewStatus, DateTime UpdateDate)
         {
             int rowsAffected = 0;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"update Applications 
-                                     set ApplicationStatus = @NewStatus, LastStatusDate = @UpdateDate
-                                     where ApplicationID = @ID;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_UpdateApplicationStatus", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", ApplicationID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
                         command.Parameters.AddWithValue("@UpdateDate", UpdateDate);
                         command.Parameters.AddWithValue("@NewStatus", NewStatus);
 
@@ -204,43 +185,44 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return (rowsAffected > 0);
         }
 
-        public static int GetActiveApplicationID(int ApplicantPersonID, byte ApplicationType)
+        public static int GetActiveApplicationID(int ApplicantPersonID, byte ApplicationTypeID)
         {
             int activeNewApplicationID = -1;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select ApplicationID
-                                     from Applications 
-                                     where ApplicantPersonID = @ApplicantPersonID and ApplicationType = @ApplicationType and ApplicationStatus = 1;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetActiveApplicationID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
-                        command.Parameters.AddWithValue("@ApplicationType", ApplicationType);
+                        command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
 
+                        SqlParameter idParameter = new SqlParameter("@ActiveApplicationID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(idParameter);
                         connection.Open();
-                        object result = command.ExecuteScalar();
+                        command.ExecuteNonQuery();
 
-                        if (result != null && int.TryParse(result.ToString(), out int id))
+                        if (idParameter.Value is int id)
                             activeNewApplicationID = id;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return activeNewApplicationID;
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 
 namespace DataAccessLayer
@@ -10,16 +11,14 @@ namespace DataAccessLayer
         public static bool FindTestType(int ID, ref string testTypeTitle, ref string testTypeDescription, ref float testTypeFees)
         {
             bool isFound = false;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from TestTypes where TestTypeID = @ID;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindTestTypeByID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", ID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@TestTypeID", ID);
 
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
@@ -34,10 +33,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
@@ -50,26 +49,23 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"update TestTypes
-                                     set testTypeTitle = @Title, TestTypeDescription = @Description, TestTypeFees = @Fees
-                                     where TestTypeID = @ID;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_UpdateTestType", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", ID);
-                        command.Parameters.AddWithValue("@Title", testTypeTitle);
-                        command.Parameters.AddWithValue("@Description", testTypeDescription);
-                        command.Parameters.AddWithValue("@Fees", testTypeFees);
-
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@TestTypeID", ID);
+                        command.Parameters.AddWithValue("@TestTypeTitle", testTypeTitle);
+                        command.Parameters.AddWithValue("@TestTypeDescription", testTypeDescription);
+                        command.Parameters.AddWithValue("@TestTypeFees", testTypeFees);
+                  
                         connection.Open();
                         rowsAffected = command.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return (rowsAffected > 0);
         }
@@ -82,9 +78,7 @@ namespace DataAccessLayer
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from TestTypes;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllTestTypes", connection))
                     {
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
@@ -96,10 +90,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }

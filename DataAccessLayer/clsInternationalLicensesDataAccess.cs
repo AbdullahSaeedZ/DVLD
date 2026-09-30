@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace DataAccessLayer
@@ -12,15 +13,14 @@ namespace DataAccessLayer
                                          ref bool IsActive, ref int CreatedByUserID)
         {
             bool isFound = false;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = "select * from InternationalLicenses where InternationalLicenseID = @ID ;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_FindInternationalLicenseByID", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", InternationalLicenseID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("InternationalLicenseID", InternationalLicenseID);
                         connection.Open();
 
                         SqlDataReader reader = command.ExecuteReader();
@@ -39,36 +39,25 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return isFound;
         }
 
-        public static int AddNewInternationalLicense(int ApplicationID, int DriverID, int IssuedUsingLicenseID,  DateTime IssueDate,  DateTime ExpirationDate,
+        public static int AddNewInternationalLicense(int DriverID, int IssuedUsingLicenseID,  DateTime IssueDate,  DateTime ExpirationDate,
                                           bool IsActive,  int CreatedByUserID)
         {
             int NewID = -1;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    // once a license is created, then application status directly becomes completed (represented as 3 in DB)
-                    // and first we have to deactivate any other active international license as system allows only one active per person 
-                    string query = @"update InternationalLicenses set IsActive = 0 where DriverID = @DriverID;
-
-                                     insert into InternationalLicenses 
-                                     values (@ApplicationID, @DriverID, @IssuedUsingLicenseID, @IssueDate, @ExpirationDate, @IsActive, @CreatedByUserID);
-
-                                     update Applications
-                                     set ApplicationStatus = 3 where ApplicationID = @ApplicationID;
-                                     select scope_identity();";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_AddNewInternationalLicense", connection))
                     {
-                        command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@DriverID", DriverID);
                         command.Parameters.AddWithValue("@IssuedUsingLicenseID", IssuedUsingLicenseID);
                         command.Parameters.AddWithValue("@IssueDate", IssueDate);
@@ -76,18 +65,22 @@ namespace DataAccessLayer
                         command.Parameters.AddWithValue("@IsActive", IsActive);
                         command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
 
+                        SqlParameter newIDParam = new SqlParameter("@NewInterNationalLicenseID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(newIDParam);
                         connection.Open();
-                        object result = command.ExecuteScalar();
+                        command.ExecuteNonQuery();
 
-                        if (result != null && int.TryParse(result.ToString(), out int ID))
-                            NewID = ID;
+                        if (newIDParam.Value is int id)
+                            NewID = id;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
             }
             return NewID;
         }
@@ -95,18 +88,14 @@ namespace DataAccessLayer
                                           bool IsActive, int CreatedByUserID)
         {
             int rowsAffected = 0;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"update InternationalLicenses 
-                                     set ApplicationID = @ApplicationID, DriverID = @DriverID, IssuedUsingLicenseID = @IssuedUsingLicenseID, IssueDate = @IssueDate, 
-                                     ExpirationDate = @ExpirationDate, IsActive = @IsActive, CreatedByUserID = @CreatedByUserID
-                                     where InternationalLicenseID = @ID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_UpdateInternationalLicense", connection))
                     {
-                        command.Parameters.AddWithValue("@ID", InternationalLicenseID);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@InternationalLicenseID", InternationalLicenseID);
                         command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
                         command.Parameters.AddWithValue("@DriverID", DriverID);
                         command.Parameters.AddWithValue("@IssuedUsingLicenseID", IssuedUsingLicenseID);
@@ -120,104 +109,43 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return (rowsAffected > 0);
         }
 
-        public static bool DoesLicenseExistByLocalLicenseID(int LicenseID)
-        {
-            bool isFound = false;
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
-                {
-                    string query = "select Found = 1 from InternationalLicenses where IssuedUsingLocalLicenseID = @ID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@ID", LicenseID);
-                        connection.Open();
-
-                        object result = command.ExecuteScalar();
-
-                        if (result != null)
-                            isFound = true;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                // logs
-                throw;
-            }
-            return isFound;
-        }
         public static int GetActiveInternationalLicenseIDByPersonID(int PersonID)
         {
             int LicenseID = -1;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select InternationalLicenses.InternationalLicenseID
-                                     from InternationalLicenses 
-                                     inner join Drivers on InternationalLicenses.DriverID = Drivers.DriverID
-                                     where Drivers.PersonID = @PersonID and IsActive = 1;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetActiveInternationalLicenseIDByPersonID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@PersonID", PersonID);
+
+                        SqlParameter idParam = new SqlParameter("@InterNationalLicenseID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(idParam);
                         connection.Open();
+                        command.ExecuteNonQuery();
 
-                        object result = command.ExecuteScalar();
-
-                        if (result != null && int.TryParse(result.ToString(), out int ID))
-                            LicenseID = ID;
+                        if (idParam.Value is int id)
+                            LicenseID = id;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
-            }
-            return LicenseID;
-        }
-
-
-        public static int GetLicenseIDbyBaseApplicationID(int BaseApplicationID)
-        {
-            int LicenseID = -1;
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
-                {
-                    // gets the first time issued local license by LocalLicenseApplicationID
-                    string query = @"select InternationalLicenses.InternationalLicenseID 
-                                     from InternationalLicenses
-                                     inner join Applications on Applications.ApplicationID = InternationalLicenses.ApplicationID
-                                     where Applications.ApplicationID = @BaseApplicationID;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@BaseApplicationID", BaseApplicationID);
-                        connection.Open();
-
-                        object result = command.ExecuteScalar();
-
-                        if (result != null && int.TryParse(result.ToString(), out int ID))
-                            LicenseID = ID;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return LicenseID;
         }
@@ -225,15 +153,13 @@ namespace DataAccessLayer
         public static DataTable GetAllInternationalLicenses()
         {
             DataTable dt = new DataTable();
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select InternationalLicenseID, ApplicationID, DriverID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive
-                                     from InternationalLicenses order by IssueDate desc;";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllInternationalLicenses", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
 
@@ -244,10 +170,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }
@@ -255,18 +181,13 @@ namespace DataAccessLayer
         public static DataTable GetAllInternationalLicensesByPersonID(int PersonID)
         {
             DataTable dt = new DataTable();
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString))
                 {
-                    string query = @"select InternationalLicenses.InternationalLicenseID, InternationalLicenses.ApplicationID, InternationalLicenses.IssuedUsingLocalLicenseID,
-                                    InternationalLicenses.IssueDate, InternationalLicenses.ExpirationDate, InternationalLicenses.IsActive
-                                    from InternationalLicenses 
-                                    inner join Drivers on Drivers.DriverID = InternationalLicenses.DriverID
-                                    where Drivers.PersonID = @PersonID";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("usp_GetAllInternationalLicensesByPersonID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@PersonID", PersonID);
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
@@ -278,10 +199,10 @@ namespace DataAccessLayer
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // logs
-                throw;
+                Log.LogEvent(EventLogEntryType.Error, ex.Message, ex.StackTrace);
+                
             }
             return dt;
         }
