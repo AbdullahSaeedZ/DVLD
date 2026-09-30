@@ -27,10 +27,27 @@ The system follows a **3-Tier Architecture** with a SQL Server relational databa
 - C#
 - .NET Framework
 - WinForms
-- SQL Server
-- ADO.NET
 - Guna2UI
+- ADO.NET
+- Microsoft SQL Server
+- Transact-SQL (T-SQL)
 
+---
+
+## 🏛 Architecture & Database Design
+
+### 1. 3-Tier Architecture
+- **Presentation Layer (WinForms + Guna2UI):** Manages user interactions, form workflows, and display logic.
+- **Business Logic Layer (BLL):** Enforces core department rules, fee calculations, and data validation.
+- **Data Access Layer (DAL - ADO.NET):** Executes parameterized commands using `SqlConnection`, `SqlCommand`, and `SqlDataReader` with parameterized queries to prevent SQL injection.
+
+### 2. T-SQL & Database Implementation
+- **Stored Procedures:** Encapsulates CRUD and business operations in precompiled routines instead of inline SQL.
+- **ACID Transactions:** Wraps multi-table operations in explicit transactions (`BEGIN TRAN` / `COMMIT` / `ROLLBACK`) with `TRY...CATCH` to avoid partial writes.
+- **Aggregate Functions:** Computes summary metrics, counts, and financial totals directly in queries using functions like `COUNT`, `SUM`, and `MAX`.
+- **Scalar User-Defined Functions:** Handles reusable value transformations and lookup calculations within the database.
+- **Triggers:** Automates table-level updates and state enforcement upon data modifications.
+- **Relational Integrity:** Uses primary keys, foreign keys, and default constraints to enforce valid relationships across tables.
 ---
 
 ## 🗄 Database Schema
@@ -56,10 +73,10 @@ The system follows a **3-Tier Architecture** with a SQL Server relational databa
 
 ## 🔒 Security
 
-- SHA-256 password hashing
-- GUID-based login tokens encrypted with DPAPI and stored in the Windows Registry
-- Bitwise permission system
-- SQL parameterization and input validation
+- **Credential Protection:** SHA-256 password hashing.
+- **Secure Persistence:** Session tokens encrypted with Windows Data Protection API (DPAPI) and stored in the Windows Registry.
+- **Authorization:** Bitwise flag permissions per user.
+- **SQL Injection Defense:** Complete parameterized queries across all DAL operations with zero dynamic SQL concatenation.
 
 ---
 
