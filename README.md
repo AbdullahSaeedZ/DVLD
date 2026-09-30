@@ -34,7 +34,7 @@ The system follows a **3-Tier Architecture** with a SQL Server relational databa
 
 ---
 
-## 🏛 Architecture & Database Design
+## 🏗️ Technical Implementation
 
 ### 1. 3-Tier Architecture
 - **Presentation Layer (WinForms + Guna2UI):** Manages user interactions, form workflows, and display logic.
@@ -48,6 +48,10 @@ The system follows a **3-Tier Architecture** with a SQL Server relational databa
 - **Scalar User-Defined Functions:** Handles reusable value transformations and lookup calculations within the database.
 - **Triggers:** Automates table-level updates and state enforcement upon data modifications.
 - **Relational Integrity:** Uses primary keys, foreign keys, and default constraints to enforce valid relationships across tables.
+
+### 3. System & File Logging
+* **Windows Event Viewer:** Records application errors and critical exceptions to the native Windows Event Log.
+* **Local File Logging:** Records application errors and critical exceptions to a size-capped text file for troubleshooting.
 ---
 
 ## 🗄 Database Schema
